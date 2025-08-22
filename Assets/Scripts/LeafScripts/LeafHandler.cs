@@ -1,51 +1,78 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace TMKOC.SYMMETRY
 {
     public class LeafHandler : MonoBehaviour
     {
-        [SerializeField] private Collider2D col;
+        [SerializeField] private Camera cam;
+        [SerializeField] private Collider2D _collider;
+        [SerializeField] private Rigidbody2D rb;
+        private Vector3 dragOffset;
+        //private bool isInDropZone = false; 
+        //[SerializeField] private Transform originalPosition;
         private Vector3 startPos;
-        private bool dragging;
+        private int touchId = -1;
+
+
+        public bool isDragging { get; private set; }
+        //public void SetIsInDropone(bool status) => isInDropZone = status;
 
 
         void Start()
         {
             startPos = transform.position;
         }
-
         void Update()
         {
             DetectDrag();
         }
         private void DetectDrag()
         {
-            if (Input.touchCount == 1)
+            if (Input.touchCount > 0)
             {
-
                 Touch touch = Input.GetTouch(0);
-                Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Camera.main.WorldToScreenPoint(transform.position).z));
                 if (touch.phase == TouchPhase.Began)
                 {
-                    Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                    if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider == col)
-                        dragging = true; 
+                    Vector3 touchWorldPosition = cam.ScreenToWorldPoint(touch.position);
+                    RaycastHit2D hit = Physics2D.Raycast(touchWorldPosition, Vector2.zero);
+                    if (hit.collider == _collider)
+                    {
+                        isDragging = true;
+                        touchId = touch.fingerId;
+                        dragOffset = transform.position - touchWorldPosition;
+                    }
                 }
-                if (dragging && touch.phase == TouchPhase.Moved)
-                {                 
-                    transform.position = new Vector3(touchPos.x, touchPos.y, startPos.z);
-                }
-                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                else if (touch.phase == TouchPhase.Moved && isDragging && touch.fingerId == touchId)
                 {
-                    dragging = false;
-                    transform.position = startPos;
+                    Vector3 touchWorldPosition = cam.ScreenToWorldPoint(touch.position);
+                    Vector3 targetPos = touchWorldPosition + dragOffset;
+                    rb.MovePosition(targetPos);
+                }
+                else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
+                {
+                    isDragging = false;
+                    if (touch.fingerId == touchId)
+                    {
+                        /*if (isInDropZone)
+                        {
+                            return;
+                        }*/
+                        ResetDragObject();
+                    }
                 }
             }
-            else
+        }
+        public void ResetDragObject()
+        {
+            _collider.enabled = false;
+            transform.DOMove(startPos, 0.5f).OnComplete(() =>
             {
-                dragging = false;
-                transform.position = startPos;
-            }
+                touchId = -1;
+                //isInDropZone = false;
+                _collider.enabled = true;
+                //GameManager.Instance.LevelManager.EnableHintButton();
+            });
         }
     }
 }
