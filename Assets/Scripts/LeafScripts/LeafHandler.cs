@@ -8,6 +8,8 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private Camera cam;
         [SerializeField] private Collider2D _collider;
         [SerializeField] private Rigidbody2D rb;
+        [SerializeField] private SpriteRenderer boundarySprite;
+        Bounds bounds;
         private Vector3 dragOffset;
         //private bool isInDropZone = false; 
         //[SerializeField] private Transform originalPosition;
@@ -22,8 +24,9 @@ namespace TMKOC.SYMMETRY
         void Start()
         {
             startPos = transform.position;
+            bounds = boundarySprite.bounds;
         }
-        void Update()
+        private void Update()
         {
             DetectDrag();
         }
@@ -47,7 +50,9 @@ namespace TMKOC.SYMMETRY
                 {
                     Vector3 touchWorldPosition = cam.ScreenToWorldPoint(touch.position);
                     Vector3 targetPos = touchWorldPosition + dragOffset;
-                    rb.MovePosition(targetPos);
+                    float clampedX = Mathf.Clamp(targetPos.x, bounds.min.x, bounds.max.x);
+                    float clampedY = Mathf.Clamp(targetPos.y, bounds.min.y, bounds.max.y);
+                    transform.position = new Vector3(clampedX, clampedY, transform.position.z);
                 }
                 else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
                 {
