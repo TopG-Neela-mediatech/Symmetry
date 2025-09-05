@@ -25,7 +25,7 @@ namespace TMKOC.SYMMETRY
                 }
             }
         }
-        private void CheckIfCorrectOrNot(LeafHandler l)
+        private void CheckIfCorrectOrNot(LeafHandler l, Vector3 ogScale)
         {
             if (leafType == l.GetLeafType())
             {
@@ -34,16 +34,24 @@ namespace TMKOC.SYMMETRY
             else
             {
                 Debug.Log("Incorrect");
-                l.ResetDragObject();
+                l.transform.DOScale(ogScale, 1f).OnComplete(() =>
+                {
+                    l.ResetDragObject();
+                });
+                ;
             }
         }
         private void DoCheckingAnimation(LeafHandler l)
         {
             if (l != null)
             {
-                l.transform.DOMove(new Vector3((bounds.max.x + 0.5f), (bounds.max.y-1f)), 1f).OnComplete(() =>
+                l.transform.DOMove(new Vector3((bounds.max.x + 0.5f), (bounds.max.y - 1f)), 1f).OnComplete(() =>
                 {
-                    CheckIfCorrectOrNot(l);
+                    Vector3 leafscale = l.transform.localScale;
+                    l.transform.DOScale(transform.localScale, 1f).OnComplete(() =>
+                    {
+                        CheckIfCorrectOrNot(l, leafscale);
+                    });
                 });
             }
         }
