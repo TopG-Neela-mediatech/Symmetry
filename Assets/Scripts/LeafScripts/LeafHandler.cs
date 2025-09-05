@@ -7,18 +7,19 @@ namespace TMKOC.SYMMETRY
     {
         [SerializeField] private Camera cam;
         [SerializeField] private Collider2D _collider;
-        [SerializeField] private Rigidbody2D rb;
         [SerializeField] private SpriteRenderer boundarySprite;
-        Bounds bounds;
+        [SerializeField] private LeafType leafType;
+        private Bounds bounds;
         private Vector3 dragOffset;
-        //private bool isInDropZone = false; 
-        //[SerializeField] private Transform originalPosition;
         private Vector3 startPos;
         private int touchId = -1;
+        private bool isInDropZone = false;
 
 
         public bool isDragging { get; private set; }
-        //public void SetIsInDropone(bool status) => isInDropZone = status;
+        public void SetLeafType(LeafType l) => leafType = l;
+        public LeafType GetLeafType() => leafType;
+        public void SetIsInDropone(bool status) => isInDropZone = status;
 
 
         void Start()
@@ -32,7 +33,7 @@ namespace TMKOC.SYMMETRY
         }
         private void DetectDrag()
         {
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && !isInDropZone)
             {
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
@@ -59,10 +60,6 @@ namespace TMKOC.SYMMETRY
                     isDragging = false;
                     if (touch.fingerId == touchId)
                     {
-                        /*if (isInDropZone)
-                        {
-                            return;
-                        }*/
                         ResetDragObject();
                     }
                 }
@@ -74,9 +71,8 @@ namespace TMKOC.SYMMETRY
             transform.DOMove(startPos, 0.5f).OnComplete(() =>
             {
                 touchId = -1;
-                //isInDropZone = false;
+                isInDropZone = false;
                 _collider.enabled = true;
-                //GameManager.Instance.LevelManager.EnableHintButton();
             });
         }
     }
