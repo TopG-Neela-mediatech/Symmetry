@@ -51,8 +51,8 @@ namespace TMKOC.SYMMETRY
                 {
                     Vector3 touchWorldPosition = cam.ScreenToWorldPoint(touch.position);
                     Vector3 targetPos = touchWorldPosition + dragOffset;
-                    float clampedX = Mathf.Clamp(targetPos.x, bounds.min.x, bounds.max.x);
-                    float clampedY = Mathf.Clamp(targetPos.y, bounds.min.y, bounds.max.y);
+                    float clampedX = Mathf.Clamp(targetPos.x, bounds.min.x+0.5f, bounds.max.x - 0.5f);
+                    float clampedY = Mathf.Clamp(targetPos.y, bounds.min.y+0.5f, bounds.max.y-0.5f);
                     transform.position = new Vector3(clampedX, clampedY, transform.position.z);
                 }
                 else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
