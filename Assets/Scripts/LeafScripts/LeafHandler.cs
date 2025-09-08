@@ -9,6 +9,8 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private Collider2D _collider;
         [SerializeField] private SpriteRenderer boundarySprite;
         [SerializeField] private LeafType leafType;
+        [SerializeField] private SpriteRenderer leafSpriteRenderer;
+        private LeafHandler[] allLeaves;
         private Bounds bounds;
         private Vector3 dragOffset;
         private Vector3 startPos;
@@ -20,12 +22,16 @@ namespace TMKOC.SYMMETRY
         public void SetLeafType(LeafType l) => leafType = l;
         public LeafType GetLeafType() => leafType;
         public void SetIsInDropone(bool status) => isInDropZone = status;
+        public SpriteRenderer GetLeafSpriteRenderer() => leafSpriteRenderer;
+        public void DisableCollider() => _collider.enabled = false;
+        public void EnableCollider() => _collider.enabled = true;
 
 
         void Start()
         {
             startPos = transform.position;
             bounds = boundarySprite.bounds;
+            allLeaves = GameManager.Instance.LevelManager.GetAllLeafHandlers();
         }
         private void Update()
         {
@@ -51,9 +57,13 @@ namespace TMKOC.SYMMETRY
                 {
                     Vector3 touchWorldPosition = cam.ScreenToWorldPoint(touch.position);
                     Vector3 targetPos = touchWorldPosition + dragOffset;
-                    float clampedX = Mathf.Clamp(targetPos.x, bounds.min.x+0.5f, bounds.max.x - 0.5f);
-                    float clampedY = Mathf.Clamp(targetPos.y, bounds.min.y+0.5f, bounds.max.y-0.5f);
+                    float clampedX = Mathf.Clamp(targetPos.x, bounds.min.x + 0.5f, bounds.max.x - 0.5f);
+                    float clampedY = Mathf.Clamp(targetPos.y, bounds.min.y + 0.5f, bounds.max.y - 0.5f);
                     transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+                    if (targetPos.x < startPos.x) // Dragging left
+                    {
+                        FadeOtherLeaves(0.3f);
+                    }
                 }
                 else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
                 {
@@ -65,14 +75,43 @@ namespace TMKOC.SYMMETRY
                 }
             }
         }
+        private void FadeOtherLeaves(float targetAlpha)
+        {
+            foreach (var leaf in allLeaves)
+            {
+                if (leaf != this) // skip self
+                {
+                    leaf.GetLeafSpriteRenderer().DOFade(targetAlpha, 0.5f);
+                }
+            }
+        }
+        public void DisableAllCollider()
+        {
+            foreach (var leaf in allLeaves)
+            {
+                leaf.DisableCollider();
+            }
+        }
+        private void EnableAllCollider()
+        {
+            foreach (var leaf in allLeaves)
+            {
+                if (leaf != this)
+                {
+                    leaf.EnableCollider();
+                }
+            }
+        }
         public void ResetDragObject()
         {
+            FadeOtherLeaves(1f);
             _collider.enabled = false;
             transform.DOMove(startPos, 0.5f).OnComplete(() =>
             {
                 touchId = -1;
                 isInDropZone = false;
                 _collider.enabled = true;
+                EnableAllCollider();
             });
         }
     }

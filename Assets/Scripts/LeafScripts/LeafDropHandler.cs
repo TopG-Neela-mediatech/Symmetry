@@ -22,6 +22,7 @@ namespace TMKOC.SYMMETRY
                 {
                     l.SetIsInDropone(true);
                     DoCheckingAnimation(l);
+                    l.DisableAllCollider();
                 }
             }
         }
@@ -38,7 +39,6 @@ namespace TMKOC.SYMMETRY
                 {
                     l.ResetDragObject();
                 });
-                ;
             }
         }
         private void DoCheckingAnimation(LeafHandler l)
