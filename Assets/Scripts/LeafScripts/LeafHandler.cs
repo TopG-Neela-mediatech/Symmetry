@@ -10,12 +10,15 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SpriteRenderer boundarySprite;
         [SerializeField] private LeafType leafType;
         [SerializeField] private SpriteRenderer leafSpriteRenderer;
+        private Vector3 bigLeafScale;
         private LeafHandler[] allLeaves;
         private Bounds bounds;
         private Vector3 dragOffset;
         private Vector3 startPos;
+        private Vector3 ogScale;
         private int touchId = -1;
         private bool isInDropZone = false;
+        private bool callOnce;
 
 
         public bool isDragging { get; private set; }
@@ -25,6 +28,7 @@ namespace TMKOC.SYMMETRY
         public SpriteRenderer GetLeafSpriteRenderer() => leafSpriteRenderer;
         public void DisableCollider() => _collider.enabled = false;
         public void EnableCollider() => _collider.enabled = true;
+        public void SetBigLeafScale(Vector3 s) => bigLeafScale = s;
 
 
         void Start()
@@ -32,6 +36,7 @@ namespace TMKOC.SYMMETRY
             startPos = transform.position;
             bounds = boundarySprite.bounds;
             allLeaves = GameManager.Instance.LevelManager.GetAllLeafHandlers();
+            ogScale = transform.localScale;
         }
         private void Update()
         {
@@ -62,8 +67,9 @@ namespace TMKOC.SYMMETRY
                     transform.position = new Vector3(clampedX, clampedY, transform.position.z);
                     if (targetPos.x < startPos.x) // Dragging left
                     {
-                        FadeOtherLeaves(0.3f);
+                        FadeOtherLeaves(0.3f, this);
                     }
+                    ScaleUpWhileDragging();
                 }
                 else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
                 {
@@ -75,11 +81,11 @@ namespace TMKOC.SYMMETRY
                 }
             }
         }
-        private void FadeOtherLeaves(float targetAlpha)
+        public void FadeOtherLeaves(float targetAlpha, LeafHandler l)
         {
             foreach (var leaf in allLeaves)
             {
-                if (leaf != this) // skip self
+                if (leaf != l) // skip self
                 {
                     leaf.GetLeafSpriteRenderer().DOFade(targetAlpha, 0.5f);
                 }
@@ -102,16 +108,26 @@ namespace TMKOC.SYMMETRY
                 }
             }
         }
+        private void ScaleUpWhileDragging()
+        {
+            if (!callOnce)
+            {
+                callOnce = true;
+                transform.DOScale(bigLeafScale,0.5f);
+            }
+        }
         public void ResetDragObject()
         {
-            FadeOtherLeaves(1f);
+            callOnce = false;
+            FadeOtherLeaves(1f, this);
             _collider.enabled = false;
+            transform.DOScale(ogScale, 0.5f);
             transform.DOMove(startPos, 0.5f).OnComplete(() =>
             {
                 touchId = -1;
                 isInDropZone = false;
                 _collider.enabled = true;
-                EnableAllCollider();
+                EnableAllCollider();                
             });
         }
     }

@@ -26,18 +26,18 @@ namespace TMKOC.SYMMETRY
                 }
             }
         }
-        private void CheckIfCorrectOrNot(LeafHandler l, Vector3 ogScale)
+        private void CheckIfCorrectOrNot(LeafHandler l)
         {
             if (leafType == l.GetLeafType())
             {
                 GameManager.Instance.InvokeLevelWin();
+                l.FadeOtherLeaves(0f, l);
+                transform.DOLocalMoveX(3f, 1);
+                l.transform.DOLocalMoveX(0f, 1);
             }
             else
-            {            
-                l.transform.DOScale(ogScale, 1f).OnComplete(() =>
-                {
-                    l.ResetDragObject();
-                });
+            {
+                l.ResetDragObject();
             }
         }
         private void DoCheckingAnimation(LeafHandler l)
@@ -45,13 +45,9 @@ namespace TMKOC.SYMMETRY
             if (l != null)
             {
                 //new Vector3((bounds.max.x + 0.5f), (bounds.max.y - 1f))
-                l.transform.DOMove(transform.position, 1f).OnComplete(() =>
+                l.transform.DOMove(transform.position, 0.5f).OnComplete(() =>
                 {
-                    Vector3 leafscale = l.transform.localScale;
-                    l.transform.DOScale(transform.localScale, 1f).OnComplete(() =>
-                    {
-                        CheckIfCorrectOrNot(l, leafscale);
-                    });
+                    CheckIfCorrectOrNot(l);
                 });
             }
         }
