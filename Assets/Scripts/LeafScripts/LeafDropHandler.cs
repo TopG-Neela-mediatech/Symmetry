@@ -45,7 +45,8 @@ namespace TMKOC.SYMMETRY
         {
             if (l != null)
             {
-                l.transform.DOMove(new Vector3((bounds.max.x + 0.5f), (bounds.max.y - 1f)), 1f).OnComplete(() =>
+                //new Vector3((bounds.max.x + 0.5f), (bounds.max.y - 1f))
+                l.transform.DOMove(transform.position, 1f).OnComplete(() =>
                 {
                     Vector3 leafscale = l.transform.localScale;
                     l.transform.DOScale(transform.localScale, 1f).OnComplete(() =>
