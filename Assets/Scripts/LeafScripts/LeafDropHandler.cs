@@ -30,11 +30,10 @@ namespace TMKOC.SYMMETRY
         {
             if (leafType == l.GetLeafType())
             {
-                Debug.Log("Correct");
+                GameManager.Instance.InvokeLevelWin();
             }
             else
-            {
-                Debug.Log("Incorrect");
+            {            
                 l.transform.DOScale(ogScale, 1f).OnComplete(() =>
                 {
                     l.ResetDragObject();
