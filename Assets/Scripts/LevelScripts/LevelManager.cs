@@ -16,13 +16,19 @@ namespace TMKOC.SYMMETRY
 
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
+        private void StartLevel() => GameManager.Instance.InvokeLevelStart();
 
 
         private void Start()
         {
+            GameManager.Instance.OnLevelStart += OnLevelStart;
             GameManager.Instance.OnLevelWin += OnLevelWin;
             SetBigLeafScale();
             currentLevelIndex = 0;
+            StartLevel();
+        }
+        private void OnLevelStart()
+        {
             SetLevel();
         }
         private void SetLevel()
@@ -61,6 +67,7 @@ namespace TMKOC.SYMMETRY
         }
         private void MoveFullLeafToCenter()
         {
+            correctSpriteR.sprite = levelSO.levelData[currentLevelIndex].correctLeafSprite;
             correctSpriteR.gameObject.SetActive(true);
             correctSpriteR.transform.DOLocalMoveX(3f, 1);
         }
