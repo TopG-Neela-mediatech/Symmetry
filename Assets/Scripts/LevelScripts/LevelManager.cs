@@ -8,7 +8,10 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private LeafHandler[] leafHandlers;
         [SerializeField] private GameObject correctTextCanvas;
         [SerializeField] private LeafDropHandler leafDropHandler;
+        [SerializeField] private SpriteRenderer correctSpriteR;
         [SerializeField] private GameObject correctAnimationSprite;
+        [SerializeField] private GameObject fullLeafObject;
+
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
 
@@ -25,10 +28,16 @@ namespace TMKOC.SYMMETRY
                 handler.SetBigLeafScale(leafDropHandler.transform.localScale);
             }
         }
+        private void MoveFullLeafToCenter()
+        {
+            correctSpriteR.gameObject.SetActive(true);
+            correctSpriteR.transform.DOLocalMoveX(3f, 1);
+        }
         private void OnLevelWin()
         {
             correctTextCanvas.SetActive(true);
             DOVirtual.DelayedCall(1f, DoWinningAnimation);
+            MoveFullLeafToCenter();
         }
         private void DoWinningAnimation()
         {

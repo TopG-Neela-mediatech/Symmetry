@@ -37,10 +37,17 @@ namespace TMKOC.SYMMETRY
             bounds = boundarySprite.bounds;
             allLeaves = GameManager.Instance.LevelManager.GetAllLeafHandlers();
             ogScale = transform.localScale;
+            GameManager.Instance.OnLevelWin += OnLevelWin;
         }
         private void Update()
         {
             DetectDrag();
+        }
+        private void OnLevelWin()
+        {
+            ResetDragObject();
+            gameObject.SetActive(false);
+            UnFadeLeaf();
         }
         private void DetectDrag()
         {
@@ -81,6 +88,10 @@ namespace TMKOC.SYMMETRY
                 }
             }
         }
+        private void UnFadeLeaf()
+        {
+            GetLeafSpriteRenderer().DOFade(1f, 0f);
+        }
         public void FadeOtherLeaves(float targetAlpha, LeafHandler l)
         {
             foreach (var leaf in allLeaves)
@@ -113,7 +124,7 @@ namespace TMKOC.SYMMETRY
             if (!callOnce)
             {
                 callOnce = true;
-                transform.DOScale(bigLeafScale,0.5f);
+                transform.DOScale(bigLeafScale, 0.5f);
             }
         }
         public void ResetDragObject()
@@ -127,7 +138,7 @@ namespace TMKOC.SYMMETRY
                 touchId = -1;
                 isInDropZone = false;
                 _collider.enabled = true;
-                EnableAllCollider();                
+                EnableAllCollider();
             });
         }
     }

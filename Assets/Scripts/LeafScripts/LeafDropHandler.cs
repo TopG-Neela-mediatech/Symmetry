@@ -5,7 +5,6 @@ namespace TMKOC.SYMMETRY
 {
     public class LeafDropHandler : MonoBehaviour
     {
-        [SerializeField] private LeafType leafType;
         [SerializeField] private SpriteRenderer halfLeafRenderer;
         private Bounds bounds;
 
@@ -28,12 +27,10 @@ namespace TMKOC.SYMMETRY
         }
         private void CheckIfCorrectOrNot(LeafHandler l)
         {
-            if (leafType == l.GetLeafType())
+            if (l.GetLeafType() == LeafType.Correct)
             {
                 GameManager.Instance.InvokeLevelWin();
-                l.FadeOtherLeaves(0f, l);
-                transform.DOLocalMoveX(3f, 1);
-                l.transform.DOLocalMoveX(0f, 1);
+                halfLeafRenderer.enabled = false;
             }
             else
             {
