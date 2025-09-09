@@ -10,6 +10,8 @@ namespace TMKOC.SYMMETRY
     [System.Serializable]
     public class LevelData
     {
+        public Sprite correctLeafSprite;
+        public Sprite correctHalfLeafSprtie;
         public LeafData[] LeafData;
     }
     [System.Serializable]

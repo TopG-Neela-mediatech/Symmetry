@@ -328,6 +328,7 @@ MonoBehaviour:
   correctSpriteR: {fileID: 1047050849}
   correctAnimationSprite: {fileID: 792654446}
   fullLeafObject: {fileID: 1047050847}
+  levelSO: {fileID: 11400000, guid: 796b5a42067c77f4993db5f37d3e70f0, type: 2}
 --- !u!1001 &397258125
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ namespace TMKOC.SYMMETRY
         private Bounds bounds;
 
 
+        public void SetCorrectHalfLeafSprite(Sprite s)=>halfLeafRenderer.sprite = s;
+
+
         private void Start()
         {
             bounds = halfLeafRenderer.bounds;

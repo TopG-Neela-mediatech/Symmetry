@@ -43,6 +43,11 @@ namespace TMKOC.SYMMETRY
         {
             DetectDrag();
         }
+        public void SetLeafData(Sprite s, LeafType l)
+        {
+            leafSpriteRenderer.sprite = s;
+            leafType = l;
+        }
         private void OnLevelWin()
         {
             ResetDragObject();

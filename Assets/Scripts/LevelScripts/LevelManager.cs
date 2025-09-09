@@ -11,6 +11,8 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SpriteRenderer correctSpriteR;
         [SerializeField] private GameObject correctAnimationSprite;
         [SerializeField] private GameObject fullLeafObject;
+        [SerializeField] private LevelSO levelSO;
+        private int currentLevelIndex;
 
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
@@ -20,6 +22,35 @@ namespace TMKOC.SYMMETRY
         {
             GameManager.Instance.OnLevelWin += OnLevelWin;
             SetBigLeafScale();
+            currentLevelIndex = 0;
+            SetLevel();
+        }
+        private void SetLevel()
+        {
+            LevelData l = levelSO.levelData[currentLevelIndex];
+            if (l != null)
+            {
+                int[] randNumbers = GetRandomArray();
+                for (int i = 0; i < leafHandlers.Length; i++)
+                {
+                    int n = randNumbers[i];
+                    leafHandlers[i].SetLeafData(levelSO.levelData[currentLevelIndex].LeafData[n].leafSprite,
+                        levelSO.levelData[currentLevelIndex].LeafData[n].leafType);
+                }
+            }
+            leafDropHandler.SetCorrectHalfLeafSprite(levelSO.levelData[currentLevelIndex].correctHalfLeafSprtie);
+        }
+        public int[] GetRandomArray()
+        {
+            int[] result = { 0, 1, 2, 3 };
+            for (int i = result.Length - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                int temp = result[i];
+                result[i] = result[j];
+                result[j] = temp;
+            }
+            return result;
         }
         private void SetBigLeafScale()
         {
