@@ -38,6 +38,11 @@ namespace TMKOC.SYMMETRY
             correctTextCanvas.SetActive(false);
             correctAnimationSprite.gameObject.SetActive(false);
             currentLevelIndex++;
+            if(currentLevelIndex >levelSO.levelData.Length-1)
+            {
+                Debug.Log("GameOver");
+                yield break;
+            }
             StartLevel();
         }
         private void SetLevel()
