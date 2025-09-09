@@ -1,6 +1,8 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace TMKOC.SYMMETRY
 {
@@ -10,23 +12,48 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private GameObject correctTextCanvas;
         [SerializeField] private LeafDropHandler leafDropHandler;
         [SerializeField] private SpriteRenderer correctSpriteR;
-        [SerializeField] private GameObject correctAnimationSprite;      
+        [SerializeField] private GameObject correctAnimationSprite;
         [SerializeField] private LevelSO levelSO;
+        [SerializeField] private Button playSchoolBackButton;
+        [SerializeField] private int gameID;
         private int currentLevelIndex;
+        private GameCategoryDataManager gameCategoryDataManager;
+        private UpdateCategoryApiManager updateCategoryApiManager;
 
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
         private void StartLevel() => GameManager.Instance.InvokeLevelStart();
+        private void SetCurrentLevelIndex()
+        {
+            currentLevelIndex = gameCategoryDataManager.GetCompletedLevel;
+            if (currentLevelIndex >= levelSO.levelData.Length)
+            {
+                currentLevelIndex = 0;
+            }
+        }
 
 
+        private void Awake()
+        {
+            #region GameID
+#if PLAYSCHOOL_MAIN
+             // assign varaible in this to get the  game ID from main app
+             gameID  = PlayerPrefs.GetInt("currentGameId");
+#endif
+            #endregion
+            gameCategoryDataManager = new GameCategoryDataManager(gameID, "symmetry");
+            updateCategoryApiManager = new UpdateCategoryApiManager(gameID);
+            SetCurrentLevelIndex();
+        }
         private void Start()
         {
             GameManager.Instance.OnLevelStart += OnLevelStart;
             GameManager.Instance.OnLevelWin += OnLevelWin;
+            playSchoolBackButton.onClick.AddListener(() => SceneManager.LoadScene(TMKOCPlaySchoolConstants.TMKOCPlayMainMenu));
             SetBigLeafScale();
-            currentLevelIndex = 0;
             StartLevel();
         }
+
         private void OnLevelStart()
         {
             SetLevel();
@@ -37,13 +64,38 @@ namespace TMKOC.SYMMETRY
             correctSpriteR.gameObject.SetActive(false);
             correctTextCanvas.SetActive(false);
             correctAnimationSprite.gameObject.SetActive(false);
-            currentLevelIndex++;
-            if(currentLevelIndex >levelSO.levelData.Length-1)
+            SaveLevel();
+            if (currentLevelIndex > levelSO.levelData.Length - 1)
             {
-                Debug.Log("GameOver");
+#if PLAYSCHOOL_MAIN
+                EffectParticleControll.Instance.SpawnGameEndPanel();
+                GameOverEndPanel.Instance.AddTheListnerRetryGame();
+#else
+                //Your testing End panel
+                Debug.Log("GameOVer");
                 yield break;
+#endif                
             }
             StartLevel();
+        }
+        public void SaveFailedAttempt() => updateCategoryApiManager.SetAttemps();
+        public void SaveLevel()
+        {
+            currentLevelIndex++;//incrementing level here
+            gameCategoryDataManager.SaveLevel(currentLevelIndex, levelSO.levelData.Length);
+            SendStars();
+        }
+        private void SendStars()
+        {
+            int star = gameCategoryDataManager.Getstar;
+            if (star >= 5)
+            {
+                updateCategoryApiManager.SetGameDataMore(currentLevelIndex, levelSO.levelData.Length, star);
+            }
+            else
+            {
+                updateCategoryApiManager.SetGameDataMore(currentLevelIndex, levelSO.levelData.Length, star);
+            }
         }
         private void SetLevel()
         {
