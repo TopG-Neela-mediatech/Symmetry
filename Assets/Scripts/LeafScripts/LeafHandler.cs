@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 namespace TMKOC.SYMMETRY
@@ -29,24 +30,30 @@ namespace TMKOC.SYMMETRY
         public void DisableCollider() => _collider.enabled = false;
         public void EnableCollider() => _collider.enabled = true;
         public void SetBigLeafScale(Vector3 s) => bigLeafScale = s;
+        private void EnableObject()=>gameObject.SetActive(true);
 
 
         void Start()
         {
+            ogScale = transform.localScale;
             startPos = transform.position;
             bounds = boundarySprite.bounds;
             allLeaves = GameManager.Instance.LevelManager.GetAllLeafHandlers();
-            ogScale = transform.localScale;
             GameManager.Instance.OnLevelWin += OnLevelWin;
+            GameManager.Instance.OnLevelStart += OnLevelStart;
         }
         private void Update()
         {
             DetectDrag();
-        }
+        }       
         public void SetLeafData(Sprite s, LeafType l)
         {
             leafSpriteRenderer.sprite = s;
             leafType = l;
+        }
+        private void OnLevelStart()
+        {
+            EnableObject();
         }
         private void OnLevelWin()
         {
@@ -145,6 +152,11 @@ namespace TMKOC.SYMMETRY
                 _collider.enabled = true;
                 EnableAllCollider();
             });
+        }
+        private void OnDestroy()
+        {
+            GameManager.Instance.OnLevelWin -= OnLevelWin;
+            GameManager.Instance.OnLevelStart -= OnLevelStart;
         }
     }
 }

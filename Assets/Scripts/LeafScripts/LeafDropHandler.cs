@@ -15,6 +15,11 @@ namespace TMKOC.SYMMETRY
         private void Start()
         {
             bounds = halfLeafRenderer.bounds;
+            GameManager.Instance.OnLevelStart += OnLevelStart;
+        }
+        private void OnLevelStart()
+        {
+            halfLeafRenderer.enabled = true;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -50,6 +55,10 @@ namespace TMKOC.SYMMETRY
                     CheckIfCorrectOrNot(l);
                 });
             }
+        }
+        private void OnDestroy()
+        {
+            GameManager.Instance.OnLevelStart -= OnLevelStart;
         }
     }
 }

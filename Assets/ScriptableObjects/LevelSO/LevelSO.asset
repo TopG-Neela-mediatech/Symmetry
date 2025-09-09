@@ -24,3 +24,14 @@ MonoBehaviour:
       leafType: 2
     - leafSprite: {fileID: 21300000, guid: 489c7b2a22265e74cbc2658e3042b461, type: 3}
       leafType: 1
+  - correctLeafSprite: {fileID: 21300000, guid: af941c3bc1743ae45b575370aecbd8b7, type: 3}
+    correctHalfLeafSprtie: {fileID: 21300000, guid: e25ac7a8b02e6a24a9085b8ef48f7054, type: 3}
+    LeafData:
+    - leafSprite: {fileID: 21300000, guid: e25ac7a8b02e6a24a9085b8ef48f7054, type: 3}
+      leafType: 2
+    - leafSprite: {fileID: 21300000, guid: 7890e85139e842f48a2a62e9ad9fd033, type: 3}
+      leafType: 0
+    - leafSprite: {fileID: 21300000, guid: 512f0a4106e2c064c97287f2eef64c03, type: 3}
+      leafType: 0
+    - leafSprite: {fileID: 21300000, guid: 489c7b2a22265e74cbc2658e3042b461, type: 3}
+      leafType: 0

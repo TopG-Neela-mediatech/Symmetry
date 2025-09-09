@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 namespace TMKOC.SYMMETRY
@@ -9,8 +10,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private GameObject correctTextCanvas;
         [SerializeField] private LeafDropHandler leafDropHandler;
         [SerializeField] private SpriteRenderer correctSpriteR;
-        [SerializeField] private GameObject correctAnimationSprite;
-        [SerializeField] private GameObject fullLeafObject;
+        [SerializeField] private GameObject correctAnimationSprite;      
         [SerializeField] private LevelSO levelSO;
         private int currentLevelIndex;
 
@@ -30,6 +30,15 @@ namespace TMKOC.SYMMETRY
         private void OnLevelStart()
         {
             SetLevel();
+        }
+        private IEnumerator LoadNextLevelAfterDelay()
+        {
+            yield return new WaitForSeconds(3f);
+            correctSpriteR.gameObject.SetActive(false);
+            correctTextCanvas.SetActive(false);
+            correctAnimationSprite.gameObject.SetActive(false);
+            currentLevelIndex++;
+            StartLevel();
         }
         private void SetLevel()
         {
@@ -76,6 +85,7 @@ namespace TMKOC.SYMMETRY
             correctTextCanvas.SetActive(true);
             DOVirtual.DelayedCall(1f, DoWinningAnimation);
             MoveFullLeafToCenter();
+            StartCoroutine(LoadNextLevelAfterDelay());
         }
         private void DoWinningAnimation()
         {
