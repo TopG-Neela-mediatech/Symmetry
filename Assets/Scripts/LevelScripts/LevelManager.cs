@@ -16,6 +16,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private LevelSO levelSO;
         [SerializeField] private Button playSchoolBackButton;
         [SerializeField] private int gameID;
+        [SerializeField] private ParticleSystem[] leavesFallingEffect;
         private int currentLevelIndex;
         private GameCategoryDataManager gameCategoryDataManager;
         private UpdateCategoryApiManager updateCategoryApiManager;
@@ -59,9 +60,25 @@ namespace TMKOC.SYMMETRY
             SetLevel();
             correctSpriteR.transform.DOLocalMoveX(0f, 0f);
         }
-        private IEnumerator LoadNextLevelAfterDelay()
+        private void PlayLeavesFaillingParticleEffect()
         {
-            yield return new WaitForSeconds(3f);
+            StopLeavesFaillingParticleEffect();
+            foreach(var p in leavesFallingEffect)
+            {
+                p.Play();
+            }
+            StartCoroutine(LoadNextLevelAfterDelay());
+        }
+        private void StopLeavesFaillingParticleEffect()
+        {
+            foreach (var p in leavesFallingEffect)
+            {
+               p.Stop();
+            }
+        }
+        private IEnumerator LoadNextLevelAfterDelay()
+        {         
+            yield return new WaitForSeconds(3f);           
             correctSpriteR.gameObject.SetActive(false);
             correctTextCanvas.SetActive(false);
             correctAnimationSprite.gameObject.SetActive(false);
@@ -142,13 +159,15 @@ namespace TMKOC.SYMMETRY
         {
             correctTextCanvas.SetActive(true);
             DOVirtual.DelayedCall(1f, DoWinningAnimation);
-            MoveFullLeafToCenter();
-            StartCoroutine(LoadNextLevelAfterDelay());
+            MoveFullLeafToCenter();            
         }
         private void DoWinningAnimation()
         {
             correctAnimationSprite.SetActive(true);
-            correctAnimationSprite.transform.DOShakeRotation(2f, 10f, 5);
+            correctAnimationSprite.transform.DOShakeRotation(2f, 10f, 5).OnComplete(() =>
+            {
+                PlayLeavesFaillingParticleEffect();
+            });
         }
     }
 }
