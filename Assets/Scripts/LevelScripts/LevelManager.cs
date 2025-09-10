@@ -57,6 +57,7 @@ namespace TMKOC.SYMMETRY
         private void OnLevelStart()
         {
             SetLevel();
+            correctSpriteR.transform.DOLocalMoveX(0f, 0f);
         }
         private IEnumerator LoadNextLevelAfterDelay()
         {
