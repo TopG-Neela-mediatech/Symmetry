@@ -7,12 +7,13 @@ using UnityEngine.UI;
 namespace TMKOC.SYMMETRY
 {
     public class LevelManager : MonoBehaviour
-    {
+    {       
         [SerializeField] private LeafHandler[] leafHandlers;
         [SerializeField] private GameObject correctTextCanvas;
         [SerializeField] private LeafDropHandler leafDropHandler;
         [SerializeField] private SpriteRenderer correctSpriteR;
         [SerializeField] private GameObject correctAnimationSprite;
+        [SerializeField] private SpriteRenderer correctAnimationSpriteR;
         [SerializeField] private LevelSO levelSO;
         [SerializeField] private Button playSchoolBackButton;
         [SerializeField] private int gameID;
@@ -23,16 +24,7 @@ namespace TMKOC.SYMMETRY
 
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
-        private void StartLevel() => GameManager.Instance.InvokeLevelStart();
-        private void SetCurrentLevelIndex()
-        {
-            currentLevelIndex = gameCategoryDataManager.GetCompletedLevel;
-            if (currentLevelIndex >= levelSO.levelData.Length)
-            {
-                currentLevelIndex = 0;
-            }
-        }
-
+       
 
         private void Awake()
         {
@@ -45,7 +37,7 @@ namespace TMKOC.SYMMETRY
             gameCategoryDataManager = new GameCategoryDataManager(gameID, "symmetry");
             updateCategoryApiManager = new UpdateCategoryApiManager(gameID);
             SetCurrentLevelIndex();
-        }
+        }       
         private void Start()
         {
             GameManager.Instance.OnLevelStart += OnLevelStart;
@@ -54,7 +46,23 @@ namespace TMKOC.SYMMETRY
             SetBigLeafScale();
             StartLevel();
         }
-
+        private void StartLevel()
+        {
+            if (currentLevelIndex == 0)
+            {
+                Debug.Log(currentLevelIndex);
+                GameManager.Instance.StartInfoScript.StartInfoPanel();             
+            }
+            GameManager.Instance.InvokeLevelStart();
+        }
+        private void SetCurrentLevelIndex()
+        {
+            currentLevelIndex = gameCategoryDataManager.GetCompletedLevel;
+            if (currentLevelIndex >= levelSO.levelData.Length)
+            {
+                currentLevelIndex = 0;
+            }
+        }
         private void OnLevelStart()
         {
             SetLevel();
@@ -63,7 +71,7 @@ namespace TMKOC.SYMMETRY
         private void PlayLeavesFaillingParticleEffect()
         {
             StopLeavesFaillingParticleEffect();
-            foreach(var p in leavesFallingEffect)
+            foreach (var p in leavesFallingEffect)
             {
                 p.Play();
             }
@@ -73,12 +81,12 @@ namespace TMKOC.SYMMETRY
         {
             foreach (var p in leavesFallingEffect)
             {
-               p.Stop();
+                p.Stop();
             }
         }
         private IEnumerator LoadNextLevelAfterDelay()
-        {         
-            yield return new WaitForSeconds(3f);           
+        {
+            yield return new WaitForSeconds(3f);
             correctSpriteR.gameObject.SetActive(false);
             correctTextCanvas.SetActive(false);
             correctAnimationSprite.gameObject.SetActive(false);
@@ -159,15 +167,22 @@ namespace TMKOC.SYMMETRY
         {
             correctTextCanvas.SetActive(true);
             DOVirtual.DelayedCall(1f, DoWinningAnimation);
-            MoveFullLeafToCenter();            
+            MoveFullLeafToCenter();
         }
         private void DoWinningAnimation()
         {
-            correctAnimationSprite.SetActive(true);
-            correctAnimationSprite.transform.DOShakeRotation(2f, 10f, 5).OnComplete(() =>
+            correctAnimationSpriteR.DOFade(0f, 0f).OnComplete(() =>
             {
-                PlayLeavesFaillingParticleEffect();
+                correctAnimationSprite.SetActive(true);
+                correctAnimationSpriteR.DOFade(1f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
+                {
+                    correctAnimationSprite.transform.DOShakeRotation(1.5f, 10f, 10).OnComplete(() =>
+                    {
+                        PlayLeavesFaillingParticleEffect();
+                    });
+                });
             });
+            ;
         }
     }
 }

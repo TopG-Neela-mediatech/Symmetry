@@ -14,9 +14,13 @@ namespace TMKOC.SYMMETRY
 
 
         private void Start()
-        {
-            OnLevelStart();
+        {           
             nextButton.onClick.AddListener(LoadNextImage);
+        }
+        public void StartInfoPanel()
+        {
+            canvasObject.SetActive(true);
+            OnLevelStart();
         }
         private void OnLevelStart()
         {
@@ -34,7 +38,7 @@ namespace TMKOC.SYMMETRY
             index++;
             if (index == infoSprites.Length)
             {
-                canvasObject.SetActive(false);
+                canvasObject.SetActive(false);               
                 return;
             }
             StartCoroutine(EnableBUttonAfterDelay(1f));
