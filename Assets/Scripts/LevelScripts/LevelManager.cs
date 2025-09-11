@@ -176,7 +176,7 @@ namespace TMKOC.SYMMETRY
                 correctAnimationSprite.SetActive(true);
                 correctAnimationSpriteR.DOFade(1f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
                 {
-                    correctAnimationSprite.transform.DOShakeRotation(1.5f, 10f, 10).OnComplete(() =>
+                    correctAnimationSprite.transform.DOShakeRotation(1.5f, 10f, 3).OnComplete(() =>
                     {
                         PlayLeavesFaillingParticleEffect();
                     });
