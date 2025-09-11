@@ -50,7 +50,6 @@ namespace TMKOC.SYMMETRY
         {
             if (currentLevelIndex == 0)
             {
-                Debug.Log(currentLevelIndex);
                 GameManager.Instance.StartInfoScript.StartInfoPanel();             
             }
             GameManager.Instance.InvokeLevelStart();
