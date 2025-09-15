@@ -25,6 +25,7 @@ namespace TMKOC.SYMMETRY
             animator.SetBool("IsIncorrect", true);
             yield return new WaitForSeconds(2.75f);
             animator.SetBool("IsIncorrect", false);
+            GameManager.Instance.LevelManager.EnableAllLeafCollider();
         }
     }
 }

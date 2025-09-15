@@ -34,7 +34,7 @@ namespace TMKOC.SYMMETRY
                 {
                     l.SetIsInDropone(true);
                     DoCheckingAnimation(l);
-                    l.DisableAllCollider();
+                    GameManager.Instance.LevelManager.DisableAllLeafCollider();
                 }
             }
         }

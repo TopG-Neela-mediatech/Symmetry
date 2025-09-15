@@ -45,6 +45,23 @@ namespace TMKOC.SYMMETRY
             StartLevel();
         }
         public void RestartLevel() => GameManager.Instance.InvokeLevelStart();
+        public void EnableAllLeafCollider()
+        {
+            foreach (var leaf in leafHandlers)
+            {
+                if (leaf != this)
+                {
+                    leaf.EnableCollider();
+                }
+            }
+        }
+        public void DisableAllLeafCollider()
+        {
+            foreach (var leaf in leafHandlers)
+            {
+                leaf.DisableCollider();
+            }
+        }
         private void StartLevel()
         {
             if (currentLevelIndex == 0)

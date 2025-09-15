@@ -119,24 +119,7 @@ namespace TMKOC.SYMMETRY
                     leaf.GetLeafSpriteRenderer().DOFade(targetAlpha, 0.5f);
                 }
             }
-        }
-        public void DisableAllCollider()
-        {
-            foreach (var leaf in allLeaves)
-            {
-                leaf.DisableCollider();
-            }
-        }
-        private void EnableAllCollider()
-        {
-            foreach (var leaf in allLeaves)
-            {
-                if (leaf != this)
-                {
-                    leaf.EnableCollider();
-                }
-            }
-        }
+        }       
         private void ScaleUpWhileDragging()
         {
             if (!callOnce)
@@ -156,7 +139,7 @@ namespace TMKOC.SYMMETRY
                 touchId = -1;
                 isInDropZone = false;
                 _collider.enabled = true;
-                EnableAllCollider();
+                //EnableAllCollider();
             });
         }
         private void OnDestroy()
