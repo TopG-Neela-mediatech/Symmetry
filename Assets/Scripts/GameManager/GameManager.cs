@@ -8,6 +8,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private AnimationController animController;
         [SerializeField] private LevelManager levelManager;
         [SerializeField] private StartInfoScript startInfoScript;
+        [SerializeField] private LivesManager livesmanager;
         //[SerializeField] private SoundManager soundManager;       
         private static GameManager instance;
 
@@ -16,6 +17,7 @@ namespace TMKOC.SYMMETRY
         public LevelManager LevelManager { get { return levelManager; } }
         public AnimationController AnimationController { get { return animController; } }
         public StartInfoScript StartInfoScript { get { return startInfoScript; } }
+        public LivesManager Livesmanager { get { return livesmanager; } }
         //public SoundManager SoundManager { get { return soundManager; } }
 
 
@@ -28,7 +30,7 @@ namespace TMKOC.SYMMETRY
             else
             {
                 Destroy(instance);
-            }           
+            }
         }
 
 
