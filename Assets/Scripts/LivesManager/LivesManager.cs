@@ -11,7 +11,7 @@ namespace TMKOC.SYMMETRY
 
         [SerializeField] private Transform heartImageT;
         [SerializeField] private TextMeshProUGUI livestext;
-        public event Action OnLivesReducedAnimationOver;
+       // public event Action OnLivesReducedAnimationOver;
         private int lives;
 
 
@@ -28,11 +28,11 @@ namespace TMKOC.SYMMETRY
                     StartCoroutine(InvokeLevelLoseAfterDelay());
                     return;
                 }
-                else
+               /* else
                 {
                     OnLivesReducedAnimationOver?.Invoke();
                     return;
-                }
+                }*/
             });
         }
         public void ReduceLives()

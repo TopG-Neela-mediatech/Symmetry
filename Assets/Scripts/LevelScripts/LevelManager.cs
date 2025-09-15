@@ -14,8 +14,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SpriteRenderer correctSpriteR;
         [SerializeField] private GameObject correctAnimationSprite;
         [SerializeField] private SpriteRenderer correctAnimationSpriteR;
-        [SerializeField] private LevelSO levelSO;
-        [SerializeField] private Button playSchoolBackButton;
+        [SerializeField] private LevelSO levelSO;       
         [SerializeField] private int gameID;
         [SerializeField] private ParticleSystem[] leavesFallingEffect;
         private int currentLevelIndex;
@@ -41,11 +40,11 @@ namespace TMKOC.SYMMETRY
         private void Start()
         {
             GameManager.Instance.OnLevelStart += OnLevelStart;
-            GameManager.Instance.OnLevelWin += OnLevelWin;
-            playSchoolBackButton.onClick.AddListener(() => SceneManager.LoadScene(TMKOCPlaySchoolConstants.TMKOCPlayMainMenu));
+            GameManager.Instance.OnLevelWin += OnLevelWin;            
             SetBigLeafScale();
             StartLevel();
         }
+        public void RestartLevel() => GameManager.Instance.InvokeLevelStart();
         private void StartLevel()
         {
             if (currentLevelIndex == 0)

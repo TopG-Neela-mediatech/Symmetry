@@ -31,6 +31,7 @@ namespace TMKOC.SYMMETRY
         public void EnableCollider() => _collider.enabled = true;
         public void SetBigLeafScale(Vector3 s) => bigLeafScale = s;
         private void EnableObject()=>gameObject.SetActive(true);
+        private void DisableObject()=>gameObject.SetActive(false);
 
 
         void Start()
@@ -41,11 +42,16 @@ namespace TMKOC.SYMMETRY
             allLeaves = GameManager.Instance.LevelManager.GetAllLeafHandlers();
             GameManager.Instance.OnLevelWin += OnLevelWin;
             GameManager.Instance.OnLevelStart += OnLevelStart;
+            GameManager.Instance.OnLevelLose += OnLevelLose;
         }
         private void Update()
         {
             DetectDrag();
         }       
+        private void OnLevelLose()
+        {
+            DisableObject();
+        }
         public void SetLeafData(Sprite s, LeafType l)
         {
             leafSpriteRenderer.sprite = s;
@@ -157,6 +163,7 @@ namespace TMKOC.SYMMETRY
         {
             GameManager.Instance.OnLevelWin -= OnLevelWin;
             GameManager.Instance.OnLevelStart -= OnLevelStart;
+            GameManager.Instance.OnLevelLose -= OnLevelLose;
         }
     }
 }

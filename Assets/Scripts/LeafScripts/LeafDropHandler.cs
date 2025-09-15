@@ -16,10 +16,15 @@ namespace TMKOC.SYMMETRY
         {
             bounds = halfLeafRenderer.bounds;
             GameManager.Instance.OnLevelStart += OnLevelStart;
+            GameManager.Instance.OnLevelLose += OnLevelLose;
         }
         private void OnLevelStart()
         {
             halfLeafRenderer.enabled = true;
+        }
+        private void OnLevelLose()
+        {
+            halfLeafRenderer.enabled = false;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -44,6 +49,7 @@ namespace TMKOC.SYMMETRY
             else
             {
                 GameManager.Instance.AnimationController.PlayIncorrectAnimation();
+                GameManager.Instance.Livesmanager.ReduceLives();
                 l.ResetDragObject();
             }
         }
@@ -61,6 +67,7 @@ namespace TMKOC.SYMMETRY
         private void OnDestroy()
         {
             GameManager.Instance.OnLevelStart -= OnLevelStart;
+            GameManager.Instance.OnLevelLose -= OnLevelLose;
         }
     }
 }

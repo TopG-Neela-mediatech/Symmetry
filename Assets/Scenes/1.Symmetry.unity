@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &85746948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85746949}
+  - component: {fileID: 85746950}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &85746949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85746948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 942916615}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &85746950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85746948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87981b03dfcd73044be99a5e53b5881c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  losePanel: {fileID: 436612388}
+  restartButton: {fileID: 436612387}
+  playSchoolBackButton: {fileID: 926234370}
 --- !u!1 &161849346
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +409,6 @@ MonoBehaviour:
   correctAnimationSprite: {fileID: 792654446}
   correctAnimationSpriteR: {fileID: 792654448}
   levelSO: {fileID: 11400000, guid: 796b5a42067c77f4993db5f37d3e70f0, type: 2}
-  playSchoolBackButton: {fileID: 926234370}
   gameID: 0
   leavesFallingEffect:
   - {fileID: 1987956464}
@@ -645,6 +691,22 @@ PrefabInstance:
 --- !u!224 &436612386 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 613793525893428890, guid: 3cdc5b77ffd23554e8a31db14b75b45f, type: 3}
+  m_PrefabInstance: {fileID: 436612385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &436612387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3183182113848451466, guid: 3cdc5b77ffd23554e8a31db14b75b45f, type: 3}
+  m_PrefabInstance: {fileID: 436612385}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &436612388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2324686769237377240, guid: 3cdc5b77ffd23554e8a31db14b75b45f, type: 3}
   m_PrefabInstance: {fileID: 436612385}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &504966093 stripped
@@ -1831,6 +1893,7 @@ Transform:
   - {fileID: 266381950}
   - {fileID: 975810333}
   - {fileID: 1259081769}
+  - {fileID: 85746949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955922430
@@ -7526,6 +7589,7 @@ MonoBehaviour:
   levelManager: {fileID: 266381951}
   startInfoScript: {fileID: 412789218}
   livesmanager: {fileID: 1259081770}
+  uiManager: {fileID: 85746950}
 --- !u!1 &1953921615
 GameObject:
   m_ObjectHideFlags: 0
