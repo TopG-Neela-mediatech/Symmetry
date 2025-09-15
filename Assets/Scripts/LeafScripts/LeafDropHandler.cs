@@ -39,9 +39,11 @@ namespace TMKOC.SYMMETRY
             {
                 GameManager.Instance.InvokeLevelWin();
                 halfLeafRenderer.enabled = false;
+                GameManager.Instance.AnimationController.PlayCorrectAnimation();
             }
             else
             {
+                GameManager.Instance.AnimationController.PlayIncorrectAnimation();
                 l.ResetDragObject();
             }
         }

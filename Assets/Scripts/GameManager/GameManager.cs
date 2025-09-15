@@ -5,7 +5,7 @@ namespace TMKOC.SYMMETRY
 {
     public class GameManager : MonoBehaviour
     {
-        //[SerializeField] private UIManager uiManager;
+        [SerializeField] private AnimationController animController;
         [SerializeField] private LevelManager levelManager;
         [SerializeField] private StartInfoScript startInfoScript;
         //[SerializeField] private SoundManager soundManager;       
@@ -14,7 +14,7 @@ namespace TMKOC.SYMMETRY
 
         public static GameManager Instance { get { return instance; } }
         public LevelManager LevelManager { get { return levelManager; } }
-        //public UIManager UIManager { get { return uiManager; } }
+        public AnimationController AnimationController { get { return animController; } }
         public StartInfoScript StartInfoScript { get { return startInfoScript; } }
         //public SoundManager SoundManager { get { return soundManager; } }
 
