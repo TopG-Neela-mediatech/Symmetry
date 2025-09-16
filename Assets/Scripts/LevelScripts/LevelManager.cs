@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,14 +8,16 @@ using UnityEngine.UI;
 namespace TMKOC.SYMMETRY
 {
     public class LevelManager : MonoBehaviour
-    {       
+    {
         [SerializeField] private LeafHandler[] leafHandlers;
         [SerializeField] private GameObject correctTextCanvas;
+        [SerializeField] private TextMeshProUGUI correctText;
+        [SerializeField] private string[] correctStrings;
         [SerializeField] private LeafDropHandler leafDropHandler;
         [SerializeField] private SpriteRenderer correctSpriteR;
         [SerializeField] private GameObject correctAnimationSprite;
         [SerializeField] private SpriteRenderer correctAnimationSpriteR;
-        [SerializeField] private LevelSO levelSO;       
+        [SerializeField] private LevelSO levelSO;
         [SerializeField] private int gameID;
         [SerializeField] private ParticleSystem[] leavesFallingEffect;
         private int currentLevelIndex;
@@ -23,7 +26,7 @@ namespace TMKOC.SYMMETRY
 
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
-       
+
 
         private void Awake()
         {
@@ -36,11 +39,11 @@ namespace TMKOC.SYMMETRY
             gameCategoryDataManager = new GameCategoryDataManager(gameID, "symmetry");
             updateCategoryApiManager = new UpdateCategoryApiManager(gameID);
             SetCurrentLevelIndex();
-        }       
+        }
         private void Start()
         {
             GameManager.Instance.OnLevelStart += OnLevelStart;
-            GameManager.Instance.OnLevelWin += OnLevelWin;            
+            GameManager.Instance.OnLevelWin += OnLevelWin;
             SetBigLeafScale();
             StartLevel();
         }
@@ -66,7 +69,7 @@ namespace TMKOC.SYMMETRY
         {
             if (currentLevelIndex == 0)
             {
-                GameManager.Instance.StartInfoScript.StartInfoPanel();             
+                GameManager.Instance.StartInfoScript.StartInfoPanel();
             }
             GameManager.Instance.InvokeLevelStart();
         }
@@ -113,7 +116,7 @@ namespace TMKOC.SYMMETRY
                 GameOverEndPanel.Instance.AddTheListnerRetryGame();
 #else
                 //Your testing End panel
-                Debug.Log("GameOVer");
+                StartCoroutine(LoadNextLevelAfterDelay());
                 yield break;
 #endif                
             }
@@ -178,8 +181,14 @@ namespace TMKOC.SYMMETRY
             correctSpriteR.gameObject.SetActive(true);
             correctSpriteR.transform.DOLocalMoveX(3f, 1);
         }
+        private void SetCorrectText()
+        {
+            int rand = UnityEngine.Random.Range(0, correctStrings.Length);
+            correctText.text = correctStrings[rand];
+        }
         private void OnLevelWin()
         {
+            SetCorrectText();
             correctTextCanvas.SetActive(true);
             DOVirtual.DelayedCall(1f, DoWinningAnimation);
             MoveFullLeafToCenter();

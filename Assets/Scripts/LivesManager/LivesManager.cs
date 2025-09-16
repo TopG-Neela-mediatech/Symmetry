@@ -8,7 +8,7 @@ namespace TMKOC.SYMMETRY
 {
     public class LivesManager : MonoBehaviour
     {
-
+        [SerializeField] private GameObject livesParent;
         [SerializeField] private Transform heartImageT;
         [SerializeField] private TextMeshProUGUI livestext;
        // public event Action OnLivesReducedAnimationOver;
@@ -17,6 +17,7 @@ namespace TMKOC.SYMMETRY
 
         private void Start()
         {
+            livesParent.SetActive(false);
             GameManager.Instance.OnLevelStart += OnLevelStart;
             lives = 3;
         }
@@ -49,6 +50,10 @@ namespace TMKOC.SYMMETRY
         }
         private void OnLevelStart()
         {
+            if (!livesParent.activeSelf)
+            {
+                livesParent.SetActive(true);
+            }
             lives = 3;
             livestext.text = "x" + lives;
         }
