@@ -45,6 +45,7 @@ namespace TMKOC.SYMMETRY
             if (index == infoStrings.Length)
             {
                 canvasObject.SetActive(false);
+                GameManager.Instance.Livesmanager.EnableLives();
                 return;
             }
             StartCoroutine(TypeText(infoStrings[index]));

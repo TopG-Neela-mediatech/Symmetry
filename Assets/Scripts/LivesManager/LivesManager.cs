@@ -11,8 +11,11 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private GameObject livesParent;
         [SerializeField] private Transform heartImageT;
         [SerializeField] private TextMeshProUGUI livestext;
-       // public event Action OnLivesReducedAnimationOver;
+        // public event Action OnLivesReducedAnimationOver;
         private int lives;
+
+
+        public void EnableLives() => livesParent.SetActive(true);
 
 
         private void Start()
@@ -30,16 +33,16 @@ namespace TMKOC.SYMMETRY
                     StartCoroutine(InvokeLevelLoseAfterDelay());
                     return;
                 }
-               /* else
-                {
-                    OnLivesReducedAnimationOver?.Invoke();
-                    return;
-                }*/
+                /* else
+                 {
+                     OnLivesReducedAnimationOver?.Invoke();
+                     return;
+                 }*/
             });
         }
         public void ReduceLives()
         {
-            lives--;          
+            lives--;
             livestext.text = "x" + lives;
             ShakeLives();
         }
@@ -50,10 +53,6 @@ namespace TMKOC.SYMMETRY
         }
         private void OnLevelStart()
         {
-            if (!livesParent.activeSelf)
-            {
-                livesParent.SetActive(true);
-            }
             lives = 3;
             livestext.text = "x" + lives;
         }
