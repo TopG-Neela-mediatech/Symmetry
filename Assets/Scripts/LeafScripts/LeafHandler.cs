@@ -63,7 +63,7 @@ namespace TMKOC.SYMMETRY
         }
         private void OnLevelWin()
         {
-            ResetDragObject();
+            ResetDragObject(true);
             gameObject.SetActive(false);
             UnFadeLeaf();
         }
@@ -101,7 +101,7 @@ namespace TMKOC.SYMMETRY
                     isDragging = false;
                     if (touch.fingerId == touchId)
                     {
-                        ResetDragObject();
+                        ResetDragObject(true);
                     }
                 }
             }
@@ -128,7 +128,7 @@ namespace TMKOC.SYMMETRY
                 transform.DOScale(bigLeafScale, 0.5f);
             }
         }
-        public void ResetDragObject()
+        public void ResetDragObject(bool canEnable)
         {
             callOnce = false;
             FadeOtherLeaves(1f, this);
@@ -138,7 +138,10 @@ namespace TMKOC.SYMMETRY
             {
                 touchId = -1;
                 isInDropZone = false;
-                _collider.enabled = true;
+                if (canEnable)
+                {
+                    _collider.enabled = true;
+                }
                 //EnableAllCollider();
             });
         }

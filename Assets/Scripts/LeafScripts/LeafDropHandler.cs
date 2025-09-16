@@ -50,7 +50,7 @@ namespace TMKOC.SYMMETRY
             {
                 GameManager.Instance.AnimationController.PlayIncorrectAnimation();
                 GameManager.Instance.Livesmanager.ReduceLives();
-                l.ResetDragObject();
+                l.ResetDragObject(false);
             }
         }
         private void DoCheckingAnimation(LeafHandler l)

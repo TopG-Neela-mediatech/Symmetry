@@ -18,6 +18,7 @@ namespace TMKOC.SYMMETRY
         private void Start()
         {
             GameManager.Instance.OnLevelStart += OnLevelStart;
+            lives = 3;
         }
         private void ShakeLives()
         {
@@ -37,7 +38,7 @@ namespace TMKOC.SYMMETRY
         }
         public void ReduceLives()
         {
-            lives--;
+            lives--;          
             livestext.text = "x" + lives;
             ShakeLives();
         }
