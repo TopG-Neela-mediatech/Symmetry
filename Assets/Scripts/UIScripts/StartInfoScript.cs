@@ -34,6 +34,11 @@ namespace TMKOC.SYMMETRY
             StartCoroutine(TypeText(infoStrings[index]));
             nextButton.interactable = false;
         }
+        private IEnumerator EnableNextButtonAfterDelay()
+        {
+            yield return new WaitForSeconds(1.5f);
+            nextButton.interactable = true;
+        }
         private void LoadNextImage()
         {
             nextButton.interactable = false;
@@ -59,10 +64,10 @@ namespace TMKOC.SYMMETRY
                 infoText.text += t[i];
                 if (i == t.Length - 1)
                 {
-                    nextButton.interactable = true;
+                    StartCoroutine(EnableNextButtonAfterDelay());
                     StringObjectAnimation(index);
                 }
-                yield return new WaitForSeconds(.05f);
+                yield return new WaitForSeconds(.04f);
             }
         }
         private void SetTextSize(int ind)
