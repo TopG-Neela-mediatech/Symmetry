@@ -15,7 +15,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private Button nextButton;
         [SerializeField] private FirstSlideScript[] firstSlideObject;
         [SerializeField] private SecondSlideScript[] secondSlideObject;
-        private Tween infoTween;
+        //private Tween infoTween;
         private int index;
 
 
@@ -37,10 +37,10 @@ namespace TMKOC.SYMMETRY
         private void LoadNextImage()
         {
             nextButton.interactable = false;
-            if (infoTween != null)
+            /*if (infoTween != null)
             {
                 infoTween.Pause();
-            }
+            }*/
             index++;
             if (index == infoStrings.Length)
             {
@@ -90,12 +90,12 @@ namespace TMKOC.SYMMETRY
             switch (ind)
             {
                 case 0:                   
-                    infoTween = infoTextT.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
+                    //infoTween = infoTextT.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
                     break;
                 case 1:                   
                     infoTextT.DOLocalMoveY(150f, 0.5f).OnComplete(() =>
                     {
-                        infoTween.Play();
+                        //infoTween.Play();
                         foreach (var f in firstSlideObject)
                         {
                             f.gameObject.SetActive(true);
@@ -103,7 +103,7 @@ namespace TMKOC.SYMMETRY
                     });
                     break;
                 case 2:                   
-                    infoTween.Play();
+                    //infoTween.Play();
                     foreach (var f in secondSlideObject)
                     {
                         f.gameObject.SetActive(true);
