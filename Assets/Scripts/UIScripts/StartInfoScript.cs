@@ -13,8 +13,8 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private Transform infoTextT;
         [SerializeField] private string[] infoStrings;
         [SerializeField] private Button nextButton;
-        [SerializeField] private GameObject firstSlideObject;
-        [SerializeField] private GameObject secondSlideObject;
+        [SerializeField] private FirstSlideScript[] firstSlideObject;
+        [SerializeField] private SecondSlideScript[] secondSlideObject;
         private Tween infoTween;
         private int index;
 
@@ -77,7 +77,10 @@ namespace TMKOC.SYMMETRY
                     break;
                 case 2:
                     infoText.fontSize = 50;
-                    firstSlideObject.SetActive(false);
+                    foreach(var f in firstSlideObject)
+                    {
+                        f.gameObject.SetActive(false);
+                    }
                     break;
                 default:return;
             }
@@ -93,12 +96,18 @@ namespace TMKOC.SYMMETRY
                     infoTextT.DOLocalMoveY(150f, 0.5f).OnComplete(() =>
                     {
                         infoTween.Play();
-                        firstSlideObject.SetActive(true);
+                        foreach (var f in firstSlideObject)
+                        {
+                            f.gameObject.SetActive(true);
+                        }
                     });
                     break;
                 case 2:                   
                     infoTween.Play();
-                    secondSlideObject.SetActive(true);
+                    foreach (var f in secondSlideObject)
+                    {
+                        f.gameObject.SetActive(true);
+                    }
                     break;
                 default:return;
             }
