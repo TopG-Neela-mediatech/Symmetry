@@ -802,7 +802,7 @@ MonoBehaviour:
   infoText: {fileID: 583434290}
   infoTextT: {fileID: 583434289}
   infoStrings:
-  - Welcome To Symmetry Game!!!!
+  - 
   - Symmetry Is When One Side Of An Object Mirrors Other Side
   - A Line Of Symmetry Divides A Symmetrical Shape In Half
   nextButton: {fileID: 705229932}
@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome To
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5fbbcd73913cd94eb953a539ae4af9a, type: 2}
   m_sharedMaterial: {fileID: -3462643136671018270, guid: c5fbbcd73913cd94eb953a539ae4af9a, type: 2}
@@ -1767,7 +1767,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 100, y: 125}
+  m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &705229932
 MonoBehaviour:
@@ -18832,7 +18832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125276672
