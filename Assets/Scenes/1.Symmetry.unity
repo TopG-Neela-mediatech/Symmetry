@@ -2369,7 +2369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &935418617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8551,6 +8551,26 @@ PrefabInstance:
     - target: {fileID: 5997194410760773411, guid: 81945b064db464544b1c52ce21b50583, type: 3}
       propertyPath: m_Name
       value: LivesParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 9102353364426511653, guid: 81945b064db464544b1c52ce21b50583, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d5978bde35f48444b6bdb6715c8cf19, type: 3}
+    - target: {fileID: 9102353364426511653, guid: 81945b064db464544b1c52ce21b50583, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9102353364426511653, guid: 81945b064db464544b1c52ce21b50583, type: 3}
+      propertyPath: m_Color.b
+      value: 0.86274517
+      objectReference: {fileID: 0}
+    - target: {fileID: 9102353364426511653, guid: 81945b064db464544b1c52ce21b50583, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 9102353364426511653, guid: 81945b064db464544b1c52ce21b50583, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
