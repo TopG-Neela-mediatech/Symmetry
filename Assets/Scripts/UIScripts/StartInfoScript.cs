@@ -13,6 +13,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private Transform infoTextT;
         [SerializeField] private string[] infoStrings;
         [SerializeField] private Button nextButton;
+        [SerializeField] private GameObject titleObject;
         [SerializeField] private FirstSlideScript[] firstSlideObject;
         [SerializeField] private SecondSlideScript[] secondSlideObject;
         //private Tween infoTween;
@@ -49,11 +50,17 @@ namespace TMKOC.SYMMETRY
             index++;
             if (index == infoStrings.Length)
             {
-                canvasObject.SetActive(false);
-                GameManager.Instance.Livesmanager.EnableLives();
+                StartCoroutine(StartGameAfterTransition());
                 return;
             }
             StartCoroutine(TypeText(infoStrings[index]));
+        }
+        private IEnumerator StartGameAfterTransition()
+        {
+            GameManager.Instance.LevelManager.PlayTranitionEffectOnly();
+            yield return new WaitForSeconds(2.5f);
+            canvasObject.SetActive(false);
+            GameManager.Instance.Livesmanager.EnableLives();
         }
         private IEnumerator TypeText(string t)
         {
@@ -76,28 +83,30 @@ namespace TMKOC.SYMMETRY
             {
                 case 0:
                     infoText.fontSize = 80;
+                    titleObject.transform.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
                     break;
                 case 1:
-                    infoText.fontSize = 50;                   
+                    titleObject.SetActive(false);
+                    infoText.fontSize = 50;
                     break;
                 case 2:
                     infoText.fontSize = 50;
-                    foreach(var f in firstSlideObject)
+                    foreach (var f in firstSlideObject)
                     {
                         f.gameObject.SetActive(false);
                     }
                     break;
-                default:return;
+                default: return;
             }
         }
         private void StringObjectAnimation(int ind)
         {
             switch (ind)
             {
-                case 0:                   
+                case 0:
                     //infoTween = infoTextT.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
                     break;
-                case 1:                   
+                case 1:
                     infoTextT.DOLocalMoveY(150f, 0.5f).OnComplete(() =>
                     {
                         //infoTween.Play();
@@ -107,14 +116,14 @@ namespace TMKOC.SYMMETRY
                         }
                     });
                     break;
-                case 2:                   
+                case 2:
                     //infoTween.Play();
                     foreach (var f in secondSlideObject)
                     {
                         f.gameObject.SetActive(true);
                     }
                     break;
-                default:return;
+                default: return;
             }
         }
     }

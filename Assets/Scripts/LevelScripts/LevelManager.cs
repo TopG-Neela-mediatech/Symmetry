@@ -86,6 +86,14 @@ namespace TMKOC.SYMMETRY
             SetLevel();
             correctSpriteR.transform.DOLocalMoveX(0f, 0f);
         }
+        public void PlayTranitionEffectOnly()
+        {
+            StopLeavesFaillingParticleEffect();
+            foreach (var p in leavesFallingEffect)
+            {
+                p.Play();
+            }
+        }
         private void PlayLeavesFaillingParticleEffect()
         {
             StopLeavesFaillingParticleEffect();
