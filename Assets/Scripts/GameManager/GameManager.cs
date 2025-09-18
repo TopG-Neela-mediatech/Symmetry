@@ -10,6 +10,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private StartInfoScript startInfoScript;
         [SerializeField] private LivesManager livesmanager;
         [SerializeField] private UIManager uiManager;
+        [SerializeField] private HandTutorialManager handTutorialManager;
         //[SerializeField] private SoundManager soundManager;       
         private static GameManager instance;
 
@@ -20,6 +21,7 @@ namespace TMKOC.SYMMETRY
         public StartInfoScript StartInfoScript { get { return startInfoScript; } }
         public LivesManager Livesmanager { get { return livesmanager; } }
         public UIManager UIManager { get { return uiManager; } }
+        public HandTutorialManager HandTutorialManager { get { return handTutorialManager; } }
         //public SoundManager SoundManager { get { return soundManager; } }
 
 

@@ -19,7 +19,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SpriteRenderer correctAnimationSpriteR;
         [SerializeField] private LevelSO levelSO;
         [SerializeField] private int gameID;
-        [SerializeField] private ParticleSystem[] leavesFallingEffect;
+        [SerializeField] private ParticleSystem[] leavesFallingEffect;       
         private int currentLevelIndex;
         private GameCategoryDataManager gameCategoryDataManager;
         private UpdateCategoryApiManager updateCategoryApiManager;
@@ -160,6 +160,10 @@ namespace TMKOC.SYMMETRY
                     int n = randNumbers[i];
                     leafHandlers[i].SetLeafData(levelSO.levelData[currentLevelIndex].LeafData[n].leafSprite,
                         levelSO.levelData[currentLevelIndex].LeafData[n].leafType);
+                    if (leafHandlers[i].GetLeafType() == LeafType.Correct)
+                    {
+                        GameManager.Instance.HandTutorialManager.SetCorrectLeaf(leafHandlers[i]);
+                    }
                 }
             }
             leafDropHandler.SetCorrectHalfLeafSprite(levelSO.levelData[currentLevelIndex].correctHalfLeafSprtie);

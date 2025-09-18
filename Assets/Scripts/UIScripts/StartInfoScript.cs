@@ -61,6 +61,7 @@ namespace TMKOC.SYMMETRY
             yield return new WaitForSeconds(2.5f);
             canvasObject.SetActive(false);
             GameManager.Instance.Livesmanager.EnableLives();
+            GameManager.Instance.HandTutorialManager.PlayTutorialOnLevelOne();
         }
         private IEnumerator TypeText(string t)
         {
