@@ -27,7 +27,7 @@ namespace TMKOC.SYMMETRY
         {
             levelMainT.localScale = new Vector3(0.65f, 0.65f, 0.65f);
             sonuT.localScale = new Vector3(0.35f, 0.35f, 0.35f);
-            sonuT.position = new Vector2(-2.5f, -1.7f);
+            sonuT.position = new Vector2(-4.5f, -3f);
         }
     }
 }
