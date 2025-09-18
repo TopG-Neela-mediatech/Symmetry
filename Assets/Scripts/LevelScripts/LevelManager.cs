@@ -19,7 +19,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SpriteRenderer correctAnimationSpriteR;
         [SerializeField] private LevelSO levelSO;
         [SerializeField] private int gameID;
-        [SerializeField] private ParticleSystem[] leavesFallingEffect;       
+        [SerializeField] private ParticleSystem[] leavesFallingEffect;
         private int currentLevelIndex;
         private GameCategoryDataManager gameCategoryDataManager;
         private UpdateCategoryApiManager updateCategoryApiManager;
@@ -124,7 +124,8 @@ namespace TMKOC.SYMMETRY
                 GameOverEndPanel.Instance.AddTheListnerRetryGame();
 #else
                 //Your testing End panel
-                StartCoroutine(LoadNextLevelAfterDelay());
+                currentLevelIndex = 0;
+                RestartLevel();
                 yield break;
 #endif                
             }
