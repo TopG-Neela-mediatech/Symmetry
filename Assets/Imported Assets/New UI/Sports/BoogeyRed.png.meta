@@ -185,7 +185,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BoogeyRed_0: -2380735340255620367
+      BoogeyRed_1: 2565608719850977740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

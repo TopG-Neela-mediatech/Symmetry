@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UnlockedRed_0: 211419013899600039
+      UnlockedRed_1: 597850040704820924
+      UnlockedRed_2: -8254891633440962663
+      UnlockedRed_3: 6648629999110834244
+      UnlockedRed_4: -8372594087854281158
+      UnlockedRed_5: -5768231988025278486
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cricket_0: -7437078035136140807
+      Cricket_1: 8067531507235514814
+      Cricket_2: 3000104780167808414
+      Cricket_3: 9210152833313380407
+      Cricket_4: 4515380563350011391
+      Cricket_5: -6795455290899464719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

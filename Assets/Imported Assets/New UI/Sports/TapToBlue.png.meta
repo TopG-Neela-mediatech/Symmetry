@@ -210,7 +210,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TapToBlue_0: 67894323444164701
+      TapToBlue_1: -5270226700225010396
+      TapToBlue_2: 8280850314461978499
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

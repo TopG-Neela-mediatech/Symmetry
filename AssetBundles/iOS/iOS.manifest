@@ -1,0 +1,9 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.0.35f1
+CRC: 789578629
+HashAppended: 0
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: symmetry
+      Dependencies: {}

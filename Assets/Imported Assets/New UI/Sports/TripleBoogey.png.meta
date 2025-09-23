@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TripleBoogey_0: -9124815673245550352
+      TripleBoogey_1: -2171409477345522401
+      TripleBoogey_2: -4402468495722149623
+      TripleBoogey_3: -6363962489974637669
+      TripleBoogey_4: 355389558672096109
+      TripleBoogey_5: -5998133405302928399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -335,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NiceShot_0: -5984226667234400068
+      NiceShot_1: 8597521732721532366
+      NiceShot_2: -322704268414727026
+      NiceShot_3: -4757118702141828784
+      NiceShot_4: 400914077140660550
+      NiceShot_5: -7909544390541491183
+      NiceShot_6: 3339331701514776858
+      NiceShot_7: 1931997757291644477
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

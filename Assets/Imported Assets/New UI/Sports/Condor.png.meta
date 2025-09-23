@@ -260,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Condor_0: 3201552861418483332
+      Condor_1: 2913641746763359335
+      Condor_2: -4111772407972880403
+      Condor_3: 6549841868662299446
+      Condor_4: -132233327692257971
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

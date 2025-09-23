@@ -260,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hurdles_0: 1316370912753307413
+      Hurdles_1: 255054659200097903
+      Hurdles_2: -6793530023977086034
+      Hurdles_3: -8976344406789938504
+      Hurdles_4: -5287429187653116937
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

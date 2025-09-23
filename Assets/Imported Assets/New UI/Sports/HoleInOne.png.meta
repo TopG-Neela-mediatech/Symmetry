@@ -335,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HoleInOne_0: -6659124883159577791
+      HoleInOne_1: -5821520219735483349
+      HoleInOne_2: -1531726346957975646
+      HoleInOne_3: 5925254829910284787
+      HoleInOne_4: -5794599152229056535
+      HoleInOne_5: -8749650482738640142
+      HoleInOne_6: 2645825813527408890
+      HoleInOne_7: 1134821216319782033
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

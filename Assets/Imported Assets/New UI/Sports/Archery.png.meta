@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Archery_0: 1765351576224072635
+      Archery_1: -7658817156823718147
+      Archery_2: 5151353812588535680
+      Archery_3: 459461428216678082
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

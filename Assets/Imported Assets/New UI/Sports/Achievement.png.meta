@@ -360,7 +360,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Achievement_0: -8953132322159463019
+      Achievement_1: 6654434062930365863
+      Achievement_2: -8887021674180979616
+      Achievement_3: 2325901586095878381
+      Achievement_4: 5822662293458920238
+      Achievement_5: 6908302201582917262
+      Achievement_6: 1170259447521472419
+      Achievement_7: -1502245833550712247
+      Achievement_8: -5891681007655976520
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

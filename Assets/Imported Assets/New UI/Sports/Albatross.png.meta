@@ -210,7 +210,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Albatross_0: -510787206569827115
+      Albatross_1: 3998206366932724859
+      Albatross_2: -3029853437583355813
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
