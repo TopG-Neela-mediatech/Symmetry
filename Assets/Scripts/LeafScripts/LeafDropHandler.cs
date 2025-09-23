@@ -45,10 +45,12 @@ namespace TMKOC.SYMMETRY
                 GameManager.Instance.InvokeLevelWin();
                 halfLeafRenderer.enabled = false;
                 GameManager.Instance.AnimationController.PlayCorrectAnimation();
+                GameManager.Instance.SoundManager.PlayCorrectAudio();
             }
             else
             {
                 GameManager.Instance.AnimationController.PlayIncorrectAnimation();
+                GameManager.Instance.SoundManager.PlayInCorrectAudio();
                 GameManager.Instance.Livesmanager.ReduceLives();
                 l.ResetDragObject(false);
             }

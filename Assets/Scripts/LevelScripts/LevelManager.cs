@@ -112,6 +112,7 @@ namespace TMKOC.SYMMETRY
         }
         private IEnumerator LoadNextLevelAfterDelay()
         {
+            GameManager.Instance.SoundManager.PlayLevelPassAudio();
             yield return new WaitForSeconds(3f);
             correctSpriteR.gameObject.SetActive(false);
             correctTextCanvas.SetActive(false);
@@ -122,6 +123,7 @@ namespace TMKOC.SYMMETRY
 #if PLAYSCHOOL_MAIN
                 EffectParticleControll.Instance.SpawnGameEndPanel();
                 GameOverEndPanel.Instance.AddTheListnerRetryGame();
+                GameManager.Instance.SoundManager.PlayOutro();
 #else
                 //Your testing End panel
                 currentLevelIndex = 0;
@@ -130,6 +132,7 @@ namespace TMKOC.SYMMETRY
 #endif                
             }
             StartLevel();
+            GameManager.Instance.SoundManager.PlayGenericQuestions();
         }
         public void SaveFailedAttempt() => updateCategoryApiManager.SetAttemps();
         public void SaveLevel()
@@ -207,7 +210,7 @@ namespace TMKOC.SYMMETRY
             MoveFullLeafToCenter();
         }
         private void DoWinningAnimation()
-        {
+        {          
             correctAnimationSpriteR.DOFade(0f, 0f).OnComplete(() =>
             {
                 correctAnimationSprite.SetActive(true);

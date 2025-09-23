@@ -62,6 +62,7 @@ namespace TMKOC.SYMMETRY
             canvasObject.SetActive(false);
             GameManager.Instance.Livesmanager.EnableLives();
             GameManager.Instance.HandTutorialManager.PlayTutorialOnLevelOne();
+            GameManager.Instance.SoundManager.PlayGenericQuestions();
         }
         private IEnumerator TypeText(string t)
         {
@@ -85,10 +86,12 @@ namespace TMKOC.SYMMETRY
                 case 0:
                     infoText.fontSize = 80;
                     titleObject.transform.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
+                    GameManager.Instance.SoundManager.PlayIntro();
                     break;
                 case 1:
                     titleObject.SetActive(false);
                     infoText.fontSize = 50;
+                    GameManager.Instance.SoundManager.PlayFirstSlideAudio();
                     break;
                 case 2:
                     infoText.fontSize = 50;
@@ -96,6 +99,7 @@ namespace TMKOC.SYMMETRY
                     {
                         f.gameObject.SetActive(false);
                     }
+                    GameManager.Instance.SoundManager.PlaySecondSlideAudio();
                     break;
                 default: return;
             }
