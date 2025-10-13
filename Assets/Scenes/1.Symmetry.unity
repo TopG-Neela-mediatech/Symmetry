@@ -13901,6 +13901,7 @@ MonoBehaviour:
   englishSO: {fileID: 11400000, guid: b432be1a515e33a48b85f5f484265ea2, type: 2}
   hindiSO: {fileID: 11400000, guid: 0b1527f06b750834a8711c011d3ed6be, type: 2}
   marathiSO: {fileID: 11400000, guid: b2e25be3353840a4aab7e6c1f283a9dd, type: 2}
+  punjabiSO: {fileID: 11400000, guid: 2aaf9fb0f5aacb042881fddee8c0e23c, type: 2}
   levelAudioSource: {fileID: 516610765}
   audioLocalization: 
 --- !u!1 &1977781670

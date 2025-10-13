@@ -9,8 +9,8 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SoundSO marathiSO;
         /*[SerializeField] private SoundSO tamilSO;
         [SerializeField] private SoundSO frenchSO;
-        [SerializeField] private SoundSO malayalamSO;
-        [SerializeField] private SoundSO punjabiSO;*/
+        [SerializeField] private SoundSO malayalamSO;*/
+        [SerializeField] private SoundSO punjabiSO;
         [SerializeField] private AudioSource levelAudioSource;
         [SerializeField] private string audioLocalization;
         private SoundSO soundData;
@@ -99,15 +99,16 @@ namespace TMKOC.SYMMETRY
                 case "Marathi":
                     soundData = marathiSO;
                     break;
+                case "Punjabi":
+                    soundData = punjabiSO;
+                    break;
                /* case "Tamil":
                     soundData = tamilSO;
                     break;
                 case "French":
                     soundData = frenchSO;
                     break;
-                case "Punjabi":
-                    soundData = punjabiSO;
-                    break;
+                
                 case "Malayalam":
                     soundData = malayalamSO;
                     break;*/
