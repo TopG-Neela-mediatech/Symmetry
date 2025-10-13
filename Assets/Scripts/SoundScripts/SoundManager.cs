@@ -6,6 +6,7 @@ namespace TMKOC.SYMMETRY
     {
         [SerializeField] private SoundSO englishSO;
         [SerializeField] private SoundSO hindiSO;
+        [SerializeField] private SoundSO marathiSO;
         /*[SerializeField] private SoundSO tamilSO;
         [SerializeField] private SoundSO frenchSO;
         [SerializeField] private SoundSO malayalamSO;
@@ -94,6 +95,9 @@ namespace TMKOC.SYMMETRY
                     break;
                 case "Hindi":
                     soundData = hindiSO;
+                    break;
+                case "Marathi":
+                    soundData = marathiSO;
                     break;
                /* case "Tamil":
                     soundData = tamilSO;
