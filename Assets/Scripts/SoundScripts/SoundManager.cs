@@ -7,9 +7,9 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SoundSO englishSO;
         [SerializeField] private SoundSO hindiSO;
         [SerializeField] private SoundSO marathiSO;
-        /*[SerializeField] private SoundSO tamilSO;
-        [SerializeField] private SoundSO frenchSO;
-        [SerializeField] private SoundSO malayalamSO;*/
+        [SerializeField] private SoundSO tamilSO;
+        /* [SerializeField] private SoundSO frenchSO;*/
+        [SerializeField] private SoundSO malayalamSO;
         [SerializeField] private SoundSO punjabiSO;
         [SerializeField] private AudioSource levelAudioSource;
         [SerializeField] private string audioLocalization;
@@ -21,7 +21,7 @@ namespace TMKOC.SYMMETRY
             SetLanguage();
         }
         private void Start()
-        {                     
+        {
             GameManager.Instance.OnLevelLose += PlayRetryAudio;
         }
         private void PlayLevelAudio(AudioClip clip)
@@ -53,7 +53,7 @@ namespace TMKOC.SYMMETRY
             PlayLevelAudio(soundData.outroClip);
         }
         public void PlayGenericQuestions()
-        {            
+        {
             if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
             int rand = UnityEngine.Random.Range(0, soundData.genericIntro.Length);
             PlayLevelAudio(soundData.genericIntro[rand]);
@@ -102,24 +102,24 @@ namespace TMKOC.SYMMETRY
                 case "Punjabi":
                     soundData = punjabiSO;
                     break;
-               /* case "Tamil":
-                    soundData = tamilSO;
-                    break;
-                case "French":
-                    soundData = frenchSO;
-                    break;
-                
                 case "Malayalam":
                     soundData = malayalamSO;
-                    break;*/
+                    break;
+                case "Tamil":
+                    soundData = tamilSO;
+                    break;
+                /* case "French":
+                     soundData = frenchSO;
+                     break;                
+                */
                 default:
                     soundData = englishSO;
                     break;
             }
         }
         private void OnDestroy()
-        {           
-            GameManager.Instance.OnLevelLose -= PlayRetryAudio;           
+        {
+            GameManager.Instance.OnLevelLose -= PlayRetryAudio;
         }
     }
 }

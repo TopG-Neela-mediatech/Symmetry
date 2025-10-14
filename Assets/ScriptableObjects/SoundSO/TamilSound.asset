@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aedfc608c9e31b42b4f88dbd7e6e36a, type: 3}
+  m_Name: TamilSound
+  m_EditorClassIdentifier: 
+  introClip: {fileID: 8300000, guid: 807c9a342d5ba124bb83e4015665e626, type: 3}
+  outroClip: {fileID: 8300000, guid: 2c3d72777cf70f946a3d2302a36b72e0, type: 3}
+  slide1: {fileID: 8300000, guid: 9284c93309886d044b43acdbe42f7d71, type: 3}
+  slide2: {fileID: 8300000, guid: d2990d1d7179c0843b8040c724209e26, type: 3}
+  genericIntro:
+  - {fileID: 8300000, guid: 7305c555bb305044e83dba00b0636627, type: 3}
+  - {fileID: 8300000, guid: 31cb8043b09eb124db661618f2ab383e, type: 3}
+  - {fileID: 8300000, guid: 7775fce65c407c44a84addb530fd29db, type: 3}
+  - {fileID: 8300000, guid: ac8205b1085155847afde4cebf92f750, type: 3}
+  - {fileID: 8300000, guid: 2e9a06ae68e719745bd5fce7bf1b02c7, type: 3}
+  correctAudio:
+  - {fileID: 8300000, guid: 3bd69773125a73040a63d3aad60b8036, type: 3}
+  - {fileID: 8300000, guid: 9fa7619f653c0c349802449c0f50735d, type: 3}
+  - {fileID: 8300000, guid: 1faf16ad26b74624798b1f639c658c80, type: 3}
+  - {fileID: 8300000, guid: 064a7217b6a6c344fa796496bf792e67, type: 3}
+  - {fileID: 8300000, guid: 26727812a5610384f8d449cd4ed9b492, type: 3}
+  incorrectAudio:
+  - {fileID: 8300000, guid: 6a679334241c93d4785493c685b56d32, type: 3}
+  - {fileID: 8300000, guid: ab4cb53da9a278243affb563adf404c1, type: 3}
+  - {fileID: 8300000, guid: 81d60e58dec85ca40828e138d0832cda, type: 3}
+  - {fileID: 8300000, guid: c5504f0902ee26d4499040f46d6051ee, type: 3}
+  - {fileID: 8300000, guid: 3004aa211cc3e5848ba83a4b79eafdd7, type: 3}
+  retryAudio:
+  - {fileID: 8300000, guid: 68ffc6d7f9b24af42a912663487d7628, type: 3}
+  - {fileID: 8300000, guid: e8807ad25e79c5a4895782bbffa3ed1e, type: 3}
+  - {fileID: 8300000, guid: 8efe5c82933a5914f906a55068370104, type: 3}
+  - {fileID: 8300000, guid: 7eb9875befc79034c834db8bd02e95b8, type: 3}
+  - {fileID: 8300000, guid: be30249614523bb42b57cd64c71251cc, type: 3}
+  levelPassAudio:
+  - {fileID: 8300000, guid: 2c8e19a4036c20940a28460d85117992, type: 3}
+  - {fileID: 8300000, guid: afc87e9b778e93847bbab129660b169e, type: 3}
+  - {fileID: 8300000, guid: f235f57fafda0e44a898d52f212ef8ae, type: 3}
+  - {fileID: 8300000, guid: 0970b7c40e518cc4d9ee3039ee174f36, type: 3}
+  - {fileID: 8300000, guid: 1b556b9913336714bbcf807fd427f754, type: 3}
