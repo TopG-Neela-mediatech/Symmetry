@@ -13905,8 +13905,9 @@ MonoBehaviour:
   frenchSO: {fileID: 11400000, guid: 5c1316057564be54ca27241b1839aa19, type: 2}
   malayalamSO: {fileID: 11400000, guid: c7d1071585bfef34cb6f6a2e71fd06fa, type: 2}
   punjabiSO: {fileID: 11400000, guid: 2aaf9fb0f5aacb042881fddee8c0e23c, type: 2}
+  bengaliSO: {fileID: 11400000, guid: 751b3bfe67485864b927326a263709d0, type: 2}
   levelAudioSource: {fileID: 516610765}
-  audioLocalization: French
+  audioLocalization: 
 --- !u!1 &1977781670
 GameObject:
   m_ObjectHideFlags: 0
