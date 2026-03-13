@@ -803,7 +803,7 @@ MonoBehaviour:
   infoText: {fileID: 583434290}
   infoTextT: {fileID: 583434289}
   infoStrings:
-  - '  '
+  - 
   - Symmetry Is When One Side Of An Object Mirrors Other Side
   - A Line Of Symmetry Divides A Symmetrical Shape In Half
   nextButton: {fileID: 705229932}
@@ -2622,6 +2622,7 @@ Transform:
   - {fileID: 1640081774}
   - {fileID: 2129060781}
   - {fileID: 1962005169}
+  - {fileID: 1936919500}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955922430
@@ -8572,6 +8573,57 @@ MonoBehaviour:
   levelMainT: {fileID: 237628672}
   sonuT: {fileID: 1182453175}
   aspectRatioThreshold: 1.4
+--- !u!1 &1649204820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649204822}
+  - component: {fileID: 1649204821}
+  m_Layer: 0
+  m_Name: RuntimeLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1649204821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649204820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4763e3149932f749aa7a258c31f498d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audiofolderName: tangrampuzzle
+  audioZipNams:
+  - en-INS
+  - en-INS
+  - en-INS
+  - en-INS
+  CurrentaudioZipName: en-INS
+--- !u!4 &1649204822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649204820}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667001327
 GameObject:
   m_ObjectHideFlags: 0
@@ -9017,6 +9069,61 @@ MonoBehaviour:
   uiManager: {fileID: 85746950}
   handTutorialManager: {fileID: 2129060782}
   soundManager: {fileID: 1962005170}
+  audioMapper: {fileID: 1936919501}
+--- !u!1 &1936919499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1936919500}
+  - component: {fileID: 1936919501}
+  m_Layer: 0
+  m_Name: AudioMapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1936919500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936919499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 942916615}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936919501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936919499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2759c31618422e54c832b7b3e4594e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelAudioSource: {fileID: 516610765}
+  introClip: Intro
+  outroClip: Outro
+  slide1: Tutorial1
+  slide2: Tutorial2
+  genericIntro:
+  - GenericIntro1
+  - GenericIntro2
+  - GenericIntro3
+  - GenericIntro4
 --- !u!1 &1953921615
 GameObject:
   m_ObjectHideFlags: 0
@@ -19663,3 +19770,4 @@ SceneRoots:
   - {fileID: 169293908}
   - {fileID: 942916615}
   - {fileID: 1667001328}
+  - {fileID: 1649204822}
