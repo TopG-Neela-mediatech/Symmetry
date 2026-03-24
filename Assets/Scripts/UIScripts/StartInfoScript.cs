@@ -33,8 +33,7 @@ namespace TMKOC.SYMMETRY
         }
         private void OnInfoStart()
         {
-            index = 0;
-            StartCoroutine(TypeText(infoStrings[index]));
+            index = 0;           
             nextButton.interactable = false;
         }
         private IEnumerator EnableNextButtonAfterDelay()
@@ -44,11 +43,7 @@ namespace TMKOC.SYMMETRY
         }
         private void LoadNextImage()
         {
-            nextButton.interactable = false;
-            /*if (infoTween != null)
-            {
-                infoTween.Pause();
-            }*/
+            nextButton.interactable = false;          
             index++;
             if (index == infoStrings.Length)
             {
