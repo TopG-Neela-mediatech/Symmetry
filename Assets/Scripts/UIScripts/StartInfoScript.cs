@@ -85,21 +85,18 @@ namespace TMKOC.SYMMETRY
             {
                 case 0:
                     infoText.fontSize = 80;
-                    titleObject.transform.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
-                    GameManager.Instance.AudioMapper.PlayIntro();
+                    titleObject.transform.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);                 
                     break;
                 case 1:
                     titleObject.SetActive(false);
-                    infoText.fontSize = 50;
-                    GameManager.Instance.AudioMapper.PlayFirstSlideAudio();
+                    infoText.fontSize = 50;                  
                     break;
                 case 2:
                     infoText.fontSize = 50;
                     foreach (var f in firstSlideObject)
                     {
                         f.gameObject.SetActive(false);
-                    }
-                    GameManager.Instance.AudioMapper.PlaySecondSlideAudio();
+                    }                  
                     break;
                 default: return;
             }

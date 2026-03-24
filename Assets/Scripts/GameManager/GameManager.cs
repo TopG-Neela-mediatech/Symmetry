@@ -11,8 +11,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private LivesManager livesmanager;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private HandTutorialManager handTutorialManager;
-        [SerializeField] private SoundManager soundManager;
-        [SerializeField] private AudioMapper audioMapper;
+        [SerializeField] private SoundManager soundManager;      
         private static GameManager instance;
 
 
@@ -25,7 +24,7 @@ namespace TMKOC.SYMMETRY
         public HandTutorialManager HandTutorialManager { get { return handTutorialManager; } }
         public SoundManager SoundManager { get { return soundManager; } }
 
-        public AudioMapper AudioMapper { get { return audioMapper; } }
+       
         private void Awake()
         {
             if (instance == null)

@@ -17,12 +17,9 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SpriteRenderer correctSpriteR;
         [SerializeField] private GameObject correctAnimationSprite;
         [SerializeField] private SpriteRenderer correctAnimationSpriteR;
-        [SerializeField] private LevelSO levelSO;
-        [SerializeField] private int gameID;
+        [SerializeField] private LevelSO levelSO;    
         [SerializeField] private ParticleSystem[] leavesFallingEffect;
-        private int currentLevelIndex;
-        private GameCategoryDataManager gameCategoryDataManager;
-        private UpdateCategoryApiManager updateCategoryApiManager;
+        private int currentLevelIndex;       
 
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
@@ -30,14 +27,7 @@ namespace TMKOC.SYMMETRY
 
         private void Awake()
         {
-            #region GameID
-#if PLAYSCHOOL_MAIN
-             // assign varaible in this to get the  game ID from main app
-             gameID  = PlayerPrefs.GetInt("currentGameId");
-#endif
-            #endregion
-            gameCategoryDataManager = new GameCategoryDataManager(gameID, "symmetry");
-            updateCategoryApiManager = new UpdateCategoryApiManager(gameID);
+            HelperGameCategoryDataSaver.Init(levelSO.levelData.Length);
             SetCurrentLevelIndex();
         }
         private void Start()
@@ -75,7 +65,7 @@ namespace TMKOC.SYMMETRY
         }
         private void SetCurrentLevelIndex()
         {
-            currentLevelIndex = gameCategoryDataManager.GetCompletedLevel;
+            currentLevelIndex = HelperGameCategoryDataSaver.GetStartLevel();
             if (currentLevelIndex >= levelSO.levelData.Length)
             {
                 currentLevelIndex = 0;
@@ -134,25 +124,12 @@ namespace TMKOC.SYMMETRY
             StartLevel();
             GameManager.Instance.SoundManager.PlayGenericQuestions();
         }
-        public void SaveFailedAttempt() => updateCategoryApiManager.SetAttemps();
+        public void SaveFailedAttempt() => HelperGameCategoryDataSaver.AddAttempt();
         public void SaveLevel()
         {
             currentLevelIndex++;//incrementing level here
-            gameCategoryDataManager.SaveLevel(currentLevelIndex, levelSO.levelData.Length);
-            SendStars();
-        }
-        private void SendStars()
-        {
-            int star = gameCategoryDataManager.Getstar;
-            if (star >= 5)
-            {
-                updateCategoryApiManager.SetGameDataMore(currentLevelIndex, levelSO.levelData.Length, star);
-            }
-            else
-            {
-                updateCategoryApiManager.SetGameDataMore(currentLevelIndex, levelSO.levelData.Length, star);
-            }
-        }
+            HelperGameCategoryDataSaver.LevelCompleted(currentLevelIndex);
+        }     
         private void SetLevel()
         {
             LevelData l = levelSO.levelData[currentLevelIndex];
