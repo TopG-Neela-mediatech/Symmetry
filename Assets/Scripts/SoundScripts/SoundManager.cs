@@ -5,7 +5,8 @@ namespace TMKOC.SYMMETRY
     public class SoundManager : MonoBehaviour
     {
         [SerializeField] private SoundSO englishSO;
-        [SerializeField] private SoundSO hindiSO;
+        [SerializeField] private AudioMapper audioMapper;
+        /*[SerializeField] private SoundSO hindiSO;
         [SerializeField] private SoundSO marathiSO;
         [SerializeField] private SoundSO tamilSO;
         [SerializeField] private SoundSO frenchSO;
@@ -14,76 +15,51 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private SoundSO bengaliSO;
         [SerializeField] private AudioSource levelAudioSource;
         [SerializeField] private string audioLocalization;
-        private SoundSO soundData;
+        private SoundSO soundData;*/
 
 
-        private void Awake()
-        {
-            SetLanguage();
-        }
         private void Start()
         {
             GameManager.Instance.OnLevelLose += PlayRetryAudio;
         }
-        private void PlayLevelAudio(AudioClip clip)
-        {
-            if (clip != null)
-            {
-                levelAudioSource.PlayOneShot(clip);
-            }
-        }
         public void PlayIntro()//for level one play intro/welcome audio
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            PlayLevelAudio(soundData.introClip);
-            //return soundData.introClip.length;
+            RuntimeAudioLoader.Instance.PlayRuntimeAudio(audioMapper.Intro);
         }
         public void PlayFirstSlideAudio()
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            PlayLevelAudio(soundData.slide1);
+            RuntimeAudioLoader.Instance.PlayRuntimeAudio(audioMapper.TutorialIntros[0]);
         }
         public void PlaySecondSlideAudio()
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            PlayLevelAudio(soundData.slide2);
+            RuntimeAudioLoader.Instance.PlayRuntimeAudio(audioMapper.TutorialIntros[1]);
         }
         public void PlayOutro()//for level one play intro/welcome audio
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            PlayLevelAudio(soundData.outroClip);
+            RuntimeAudioLoader.Instance.PlayRuntimeAudio(audioMapper.Outro);
         }
         public void PlayGenericQuestions()
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            int rand = UnityEngine.Random.Range(0, soundData.genericIntro.Length);
-            PlayLevelAudio(soundData.genericIntro[rand]);
+            int rand = UnityEngine.Random.Range(0, audioMapper.GenericIntros.Length);
+            RuntimeAudioLoader.Instance.PlayRuntimeAudio(audioMapper.GenericIntros[rand]);
         }
         public void PlayCorrectAudio()
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            int rand = UnityEngine.Random.Range(0, soundData.correctAudio.Length);
-            PlayLevelAudio(soundData.correctAudio[rand]);
+            RuntimeAudioLoader.Instance.PlayCorrectAudioClip();
         }
         public void PlayInCorrectAudio()
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            int rand = UnityEngine.Random.Range(0, soundData.incorrectAudio.Length);
-            PlayLevelAudio(soundData.incorrectAudio[rand]);
+            RuntimeAudioLoader.Instance.PlayIncorrectAudioClip();
         }
         private void PlayRetryAudio()
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            int rand = UnityEngine.Random.Range(0, soundData.retryAudio.Length);
-            PlayLevelAudio(soundData.retryAudio[rand]);
+            RuntimeAudioLoader.Instance.PlayRetryAudioClip();
         }
         public void PlayLevelPassAudio()
         {
-            if (levelAudioSource.isPlaying) { levelAudioSource.Stop(); }
-            int rand = UnityEngine.Random.Range(0, soundData.levelPassAudio.Length);
-            PlayLevelAudio(soundData.levelPassAudio[rand]);
+            RuntimeAudioLoader.Instance.PlayNextLevelAudioClip();
         }
-        private void SetLanguage()
+        /*private void SetLanguage()
         {
             audioLocalization = PlayerPrefs.GetString("PlayschoolLanguageAudio", audioLocalization);
             switch (audioLocalization)
@@ -119,7 +95,7 @@ namespace TMKOC.SYMMETRY
                     soundData = englishSO;
                     break;
             }
-        }
+        }*/
         private void OnDestroy()
         {
             GameManager.Instance.OnLevelLose -= PlayRetryAudio;

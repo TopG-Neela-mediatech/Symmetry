@@ -488,7 +488,6 @@ MonoBehaviour:
   correctAnimationSprite: {fileID: 792654446}
   correctAnimationSpriteR: {fileID: 792654448}
   levelSO: {fileID: 11400000, guid: 796b5a42067c77f4993db5f37d3e70f0, type: 2}
-  gameID: 0
   leavesFallingEffect:
   - {fileID: 1987956464}
   - {fileID: 955922432}
@@ -2486,6 +2485,7 @@ Transform:
   - {fileID: 1640081774}
   - {fileID: 2129060781}
   - {fileID: 1962005169}
+  - {fileID: 1989025556}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955922430
@@ -13762,15 +13762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   englishSO: {fileID: 11400000, guid: b432be1a515e33a48b85f5f484265ea2, type: 2}
-  hindiSO: {fileID: 11400000, guid: 0b1527f06b750834a8711c011d3ed6be, type: 2}
-  marathiSO: {fileID: 11400000, guid: b2e25be3353840a4aab7e6c1f283a9dd, type: 2}
-  tamilSO: {fileID: 11400000, guid: 5e9a0a623a0a2e8479e4239fe814833b, type: 2}
-  frenchSO: {fileID: 11400000, guid: 5c1316057564be54ca27241b1839aa19, type: 2}
-  malayalamSO: {fileID: 11400000, guid: c7d1071585bfef34cb6f6a2e71fd06fa, type: 2}
-  punjabiSO: {fileID: 11400000, guid: 2aaf9fb0f5aacb042881fddee8c0e23c, type: 2}
-  bengaliSO: {fileID: 11400000, guid: 751b3bfe67485864b927326a263709d0, type: 2}
-  levelAudioSource: {fileID: 516610765}
-  audioLocalization: 
+  audioMapper: {fileID: 1989025557}
 --- !u!1 &1977781670
 GameObject:
   m_ObjectHideFlags: 0
@@ -18688,6 +18680,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 169293908}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1989025555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1989025556}
+  - component: {fileID: 1989025557}
+  m_Layer: 0
+  m_Name: AudioMapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1989025556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989025555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 942916615}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1989025557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989025555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26b972b1cdee144cbf0c8fbf6632318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Intro: Intro
+  TutorialIntros:
+  - Tutorial1
+  - Tutorial2
+  GenericIntros:
+  - GenericIntro1
+  - GenericIntro2
+  - GenericIntro3
+  - GenericIntro4
+  Outro: Outro
 --- !u!1001 &2008048361
 PrefabInstance:
   m_ObjectHideFlags: 0

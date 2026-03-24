@@ -175,14 +175,14 @@ public class RuntimeAudioLoader : MonoBehaviour
         UnityWebRequest www =
             UnityWebRequestMultimedia.GetAudioClip("file://" + filePath, AudioType.MPEG);
 
+        yield return www.SendWebRequest();
+
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogWarning("Clip load failed: " + filePath);
             yield break;
         }
 
-
-        yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
         {

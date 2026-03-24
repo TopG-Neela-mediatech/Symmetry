@@ -26,8 +26,10 @@ namespace TMKOC.SYMMETRY
         }
         public void StartInfoPanel()
         {
+            GameManager.Instance.SoundManager.PlayIntro();
             canvasObject.SetActive(true);
             OnInfoStart();
+            StartCoroutine(EnableNextButtonAfterDelay());
         }
         private void OnInfoStart()
         {
@@ -109,6 +111,7 @@ namespace TMKOC.SYMMETRY
                     //infoTween = infoTextT.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
                     break;
                 case 1:
+                    GameManager.Instance.SoundManager.PlayFirstSlideAudio();
                     infoTextT.DOLocalMoveY(150f, 0.5f).OnComplete(() =>
                     {
                         //infoTween.Play();
@@ -119,6 +122,7 @@ namespace TMKOC.SYMMETRY
                     });
                     break;
                 case 2:
+                    GameManager.Instance.SoundManager.PlaySecondSlideAudio();
                     //infoTween.Play();
                     foreach (var f in secondSlideObject)
                     {
