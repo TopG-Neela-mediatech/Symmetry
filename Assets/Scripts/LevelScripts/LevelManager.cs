@@ -23,6 +23,7 @@ namespace TMKOC.SYMMETRY
 
 
         public LeafHandler[] GetAllLeafHandlers() => leafHandlers;
+        public int GetCurrentLevelIndex() => currentLevelIndex;
 
 
         private void Awake()

@@ -21,6 +21,10 @@ namespace TMKOC.SYMMETRY
         private void Start()
         {
             GameManager.Instance.OnLevelLose += PlayRetryAudio;
+            if (GameManager.Instance.LevelManager.GetCurrentLevelIndex() != 0)
+            {
+                PlayGenericQuestions();
+            }
         }
         public void PlayIntro()//for level one play intro/welcome audio
         {
