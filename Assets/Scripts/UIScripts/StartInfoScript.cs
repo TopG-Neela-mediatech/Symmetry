@@ -17,6 +17,7 @@ namespace TMKOC.SYMMETRY
         [SerializeField] private FirstSlideScript[] firstSlideObject;
         [SerializeField] private SecondSlideScript[] secondSlideObject;
         //private Tween infoTween;
+        private Coroutine typingCoroutine;
         private int index;
 
 
@@ -38,7 +39,7 @@ namespace TMKOC.SYMMETRY
         }
         private IEnumerator EnableNextButtonAfterDelay()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             nextButton.interactable = true;
         }
         private void LoadNextImage()
@@ -50,7 +51,7 @@ namespace TMKOC.SYMMETRY
                 StartCoroutine(StartGameAfterTransition());
                 return;
             }
-            StartCoroutine(TypeText(infoStrings[index]));
+            typingCoroutine= StartCoroutine(TypeText(infoStrings[index]));
         }
         private IEnumerator StartGameAfterTransition()
         {
@@ -62,18 +63,23 @@ namespace TMKOC.SYMMETRY
             GameManager.Instance.SoundManager.PlayGenericQuestions();
         }
         private IEnumerator TypeText(string t)
-        {
+        { 
+            StartCoroutine(EnableNextButtonAfterDelay());
             SetTextSize(index);
+            if(typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
             infoText.text = "";
             for (int i = 0; i < t.Length; i++)
             {
                 infoText.text += t[i];
                 if (i == t.Length - 1)
                 {
-                    StartCoroutine(EnableNextButtonAfterDelay());
+                   
                     StringObjectAnimation(index);
                 }
-                yield return new WaitForSeconds(.04f);
+                yield return new WaitForSeconds(.03f);
             }
         }
         private void SetTextSize(int ind)
@@ -86,14 +92,24 @@ namespace TMKOC.SYMMETRY
                     break;
                 case 1:
                     titleObject.SetActive(false);
-                    infoText.fontSize = 50;                  
+                    infoText.fontSize = 50;
+                    GameManager.Instance.SoundManager.PlayFirstSlideAudio();
+                    foreach (var f in firstSlideObject)
+                    {
+                        f.gameObject.SetActive(true);
+                    }
                     break;
                 case 2:
+                    GameManager.Instance.SoundManager.PlaySecondSlideAudio();
                     infoText.fontSize = 50;
                     foreach (var f in firstSlideObject)
                     {
                         f.gameObject.SetActive(false);
-                    }                  
+                    }
+                    foreach (var f in secondSlideObject)
+                    {
+                        f.gameObject.SetActive(true);
+                    }
                     break;
                 default: return;
             }
@@ -102,27 +118,12 @@ namespace TMKOC.SYMMETRY
         {
             switch (ind)
             {
-                case 0:
-                    //infoTween = infoTextT.DOScale(1.1f, 1.5f).SetLoops(-1, LoopType.Yoyo);
+                case 0:                  
                     break;
                 case 1:
-                    GameManager.Instance.SoundManager.PlayFirstSlideAudio();
-                    infoTextT.DOLocalMoveY(150f, 0.5f).OnComplete(() =>
-                    {
-                        //infoTween.Play();
-                        foreach (var f in firstSlideObject)
-                        {
-                            f.gameObject.SetActive(true);
-                        }
-                    });
+                    infoTextT.DOLocalMoveY(150f, 0.5f);
                     break;
-                case 2:
-                    GameManager.Instance.SoundManager.PlaySecondSlideAudio();
-                    //infoTween.Play();
-                    foreach (var f in secondSlideObject)
-                    {
-                        f.gameObject.SetActive(true);
-                    }
+                case 2:                                                      
                     break;
                 default: return;
             }
