@@ -73,12 +73,7 @@ namespace TMKOC.SYMMETRY
             infoText.text = "";
             for (int i = 0; i < t.Length; i++)
             {
-                infoText.text += t[i];
-                if (i == t.Length - 1)
-                {
-                   
-                    StringObjectAnimation(index);
-                }
+                infoText.text += t[i];               
                 yield return new WaitForSeconds(.03f);
             }
         }
@@ -113,20 +108,6 @@ namespace TMKOC.SYMMETRY
                     break;
                 default: return;
             }
-        }
-        private void StringObjectAnimation(int ind)
-        {
-            switch (ind)
-            {
-                case 0:                  
-                    break;
-                case 1:
-                    infoTextT.DOLocalMoveY(150f, 0.5f);
-                    break;
-                case 2:                                                      
-                    break;
-                default: return;
-            }
-        }
+        }      
     }
 }
