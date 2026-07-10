@@ -54,7 +54,7 @@ namespace TMKOC.SYMMETRY
         private void OnLevelStart()
         {
             lives = 3;
-            livestext.text = "x" + lives;
+            livestext.text = lives.ToString();
         }
         private void OnDestroy()
         {
