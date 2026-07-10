@@ -1,9 +1,12 @@
 ManifestFileVersion: 0
-UnityVersion: 6000.0.35f1
-CRC: 3843881147
+UnityVersion: 6000.3.6f1
+CRC: 201280194
 HashAppended: 0
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
+      Name: unifiedraytracing
+      Dependencies: {}
+    Info_1:
       Name: symmetry
       Dependencies: {}

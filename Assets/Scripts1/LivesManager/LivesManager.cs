@@ -43,7 +43,7 @@ namespace TMKOC.SYMMETRY
         public void ReduceLives()
         {
             lives--;
-            livestext.text = "x" + lives;
+            livestext.text = lives.ToString();
             ShakeLives();
         }
         private IEnumerator InvokeLevelLoseAfterDelay()
