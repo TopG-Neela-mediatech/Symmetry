@@ -14,15 +14,18 @@ namespace TMKOC.SYMMETRY
         // public event Action OnLivesReducedAnimationOver;
         private int lives;
 
+      
 
         public void EnableLives() => livesParent.SetActive(true);
 
 
         private void Start()
         {
-            livesParent.SetActive(false);
             GameManager.Instance.OnLevelStart += OnLevelStart;
             lives = 3;
+            livesParent.SetActive(false);
+
+
         }
         private void ShakeLives()
         {

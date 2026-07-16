@@ -62,6 +62,7 @@ namespace TMKOC.SYMMETRY
             {
                 GameManager.Instance.StartInfoScript.StartInfoPanel();
             }
+            HelperGameCategoryDataSaver.GetStartLevel();
             GameManager.Instance.InvokeLevelStart();
         }
         private void SetCurrentLevelIndex()
